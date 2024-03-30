@@ -1,0 +1,84 @@
+@mixin light {
+  --red: red;
+  --green: green;
+  --theme: light;
+  --white: #ffffff;
+  --font-color: rgba(0, 0, 0, 0.88);
+  --color-bg-bar: #F0F0F0;
+  --color-bg-header: rgb(249, 249, 249);
+  --color-bg-btn: rgba(0, 0, 0, 0.06);
+  --color-border: rgba(5, 5, 5, 0.06);
+}
+
+@mixin dark {
+  --theme: dark;
+  --white: #ffffff;
+  --color-bg-bar: 001529;
+  --font-color: rgba(0, 0, 0, 0.88);
+  --color-bg-btn: rgba(0, 0, 0, 0.06);
+  --color-border: rgba(5, 5, 5, 0.06);
+}
+
+:root {
+  @include light
+}
+
+.light {
+  @include light;
+}
+
+.dark {
+  @include dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include dark;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-space {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-title-menus > *:not(:first-child) {
+  margin-left: 8px;
+}
+
+.table-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.search-form {
+  height: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
