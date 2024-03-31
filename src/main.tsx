@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from "@/App.tsx";
 import '@/styles/global.scss';
 import Loading from "@/components/loading.tsx";
+import {worker} from "@/mocks/browser.ts";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -12,7 +13,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </React.StrictMode>
 );
 
-const {worker} = await import("@/mocks/browser.ts");
 worker.start({
     serviceWorker: {
         url: 'mockServiceWorker.js',
