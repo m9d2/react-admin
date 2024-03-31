@@ -17,8 +17,8 @@ const theme = {
     },
     components: {
         Menu: {
-            subMenuItemBorderRadius: 0,
-            itemBorderRadius: 0,
+            subMenuItemBorderRadius: 4,
+            itemBorderRadius: 4,
         },
         Input: {
         },

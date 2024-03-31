@@ -134,7 +134,46 @@ const option3: ECOption = {
     ]
 };
 
+const option4: ECOption = {
+    resize: true,
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '0',
+        right: '0',
+        bottom: '0',
+        top: '0',
+        containLabel: false
+    },
+    xAxis: {
+        show: false,
+        type: 'category',
+        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+    },
+    yAxis: {
+        show: false,
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Direct',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 52, 200, 334, 390, 330, 220, 301, 100, 300, 210, 390]
+        }
+    ],
+    color: [
+        '#1677ff'
+    ]
+};
+
 const DataCardPanel = () => {
+
+    const valueStyle = {fontSize: '30px', fontWeight: 500}
 
     return (
         <div className={styles.cardDataPanel}>
@@ -147,7 +186,7 @@ const DataCardPanel = () => {
                     <div className={styles.cardDataCard}>
                         <div>
                             <span>总销售额</span>
-                            <Statistic valueStyle={{fontSize: '30px', fontWeight: 500}} value={126560} prefix="￥"/>
+                            <Statistic valueStyle={valueStyle} value={126560} prefix="￥"/>
                         </div>
                         <div className={styles.cardDataChart}>
                             <div>
@@ -175,7 +214,7 @@ const DataCardPanel = () => {
                     <div className={styles.cardDataCard}>
                         <div>
                             <span>访问量</span>
-                            <Statistic valueStyle={{fontSize: '30px', fontWeight: 500}} value={8846}/>
+                            <Statistic valueStyle={valueStyle} value={8846}/>
                         </div>
                         <div className={styles.cardDataChart}>
                             <EChart option={option2} style={{width: '100%', height: '100%'}}/>
@@ -193,24 +232,15 @@ const DataCardPanel = () => {
                      xl={{flex: '10%'}}>
                     <div className={styles.cardDataCard}>
                         <div>
-                            <span>访问量</span>
-                            <Statistic valueStyle={{fontSize: '30px', fontWeight: 500}} value={8846}/>
+                            <span>支付笔数</span>
+                            <Statistic valueStyle={valueStyle} value={8846}/>
                         </div>
                         <div className={styles.cardDataChart}>
-                            <div>
-                                <span>周同比</span>
-                                <span>12%</span>
-                                <CaretUpOutlined className="red"/>
-                            </div>
-                            <div>
-                                <span>日同比</span>
-                                <span>11%</span>
-                                <CaretDownOutlined className="green"/>
-                            </div>
+                            <EChart option={option4} style={{width: '100%', height: '100%'}}/>
                         </div>
                         <div className={styles.cardDataFooter}>
-                            <span>日访问量</span>
-                            <span>1234</span>
+                            <span>转化率</span>
+                            <span>60%</span>
                         </div>
                     </div>
                 </Col>
@@ -222,7 +252,7 @@ const DataCardPanel = () => {
                     <div className={styles.cardDataCard}>
                         <div>
                             <span>访问量</span>
-                            <Statistic valueStyle={{fontSize: '30px', fontWeight: 500}} value={8846}/>
+                            <Statistic valueStyle={valueStyle} value={8846}/>
                         </div>
                         <div className={styles.cardDataChart}>
                             <div>
@@ -249,6 +279,7 @@ const DataCardPanel = () => {
 
 const Dashboard = () => {
     const [options, setOptions] = useState<string[]>([]);
+    const [value, setValue] = useState<string | number>('Map');
 
     const items: MenuProps['items'] = [
         {
@@ -260,14 +291,18 @@ const Dashboard = () => {
             label: '操作2',
         }
     ];
+    const onChange = (value: string | number) => {
+        setValue(value)
+    }
     useEffect(() => {
         setOptions(['全部渠道', '线上', '门店'])
+        setValue('全部渠道')
     }, []);
     const extra = (
         <>
-            <Segmented options={options}/>
+            <Segmented value={value} options={options} onChange={onChange}/>
             <Dropdown menu={{items}} placement="bottom">
-                <Button type="text"><EllipsisOutlined/></Button>
+                <Button type="link" className={styles.more}><EllipsisOutlined/></Button>
             </Dropdown>
         </>
     )

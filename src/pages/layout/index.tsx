@@ -5,7 +5,7 @@ import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
 import Navigation from "@/pages/layout/components/navigation.tsx";
 import {Outlet, useNavigate} from "react-router-dom";
 import {auth} from "@/utils";
-import AuthRouter from "@/components/auth.tsx";
+import AuthRouter from "@/pages/layout/components/auth-router.tsx";
 import {UserInfo} from '@/api/user/index.ts'
 
 

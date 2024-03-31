@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import type {TableProps} from 'antd';
-import {Button, Divider, Form, FormProps, Input,} from 'antd';
+import {Button, Divider, Form, FormProps, Input, Space,} from 'antd';
 import Table from "@/components/table";
 import {PlusOutlined, RedoOutlined, SearchOutlined} from "@ant-design/icons";
 import {User} from "@/api";
@@ -125,20 +125,21 @@ const App: React.FC = () => {
                 <Form
                     name="basic"
                     autoComplete="off"
-                    className="search-form"
                     onFinish={onFinish}
+                    layout="inline"
                 >
                     <Form.Item label="用户名/姓名" name="condition" className="form-item">
                         <Input placeholder="请输入用户名或姓名" allowClear/>
                     </Form.Item>
                     <Form.Item className="form-item">
-                        <Button icon={<SearchOutlined/>} type="primary" htmlType="submit"
-                                style={{marginLeft: '8px'}}>
-                            查询
-                        </Button>
-                        <Button icon={<RedoOutlined/>} style={{marginLeft: '8px'}}>
-                            重置
-                        </Button>
+                        <Space size={8}>
+                            <Button icon={<SearchOutlined/>} type="primary" htmlType="submit">
+                                查询
+                            </Button>
+                            <Button icon={<RedoOutlined/>}>
+                                重置
+                            </Button>
+                        </Space>
                     </Form.Item>
 
                 </Form>
