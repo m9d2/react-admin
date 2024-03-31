@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import type {TableProps} from 'antd';
 import {Button, Divider, Form, FormProps, Input,} from 'antd';
-import {ContentBox, SearchBox} from '@/components/ui'
 import Table from "@/components/table";
 import {PlusOutlined, RedoOutlined, SearchOutlined} from "@ant-design/icons";
 import {User} from "@/api";
@@ -121,45 +120,43 @@ const App: React.FC = () => {
     }
 
     return (
-        <div style={{overflow: 'auto',}}>
-            <div style={{margin: '12px'}}>
-                <SearchBox>
-                    <Form
-                        name="basic"
-                        className="search-form"
-                        autoComplete="off"
-                        onFinish={onFinish}
-                    >
-                        <div className="flex">
-                            <Form.Item label="用户名/姓名" name="condition">
-                                <Input placeholder="请输入用户名或姓名" allowClear/>
-                            </Form.Item>
-                            <Button icon={<SearchOutlined/>} type="primary" htmlType="submit"
-                                    style={{marginLeft: '8px'}}>
-                                查询
-                            </Button>
-                            <Button icon={<RedoOutlined/>} style={{marginLeft: '8px'}}>
-                                重置
-                            </Button>
-                        </div>
+        <>
+            <div className="table-search">
+                <Form
+                    name="basic"
+                    autoComplete="off"
+                    className="search-form"
+                    onFinish={onFinish}
+                >
+                    <Form.Item label="用户名/姓名" name="condition" className="form-item">
+                        <Input placeholder="请输入用户名或姓名" allowClear/>
+                    </Form.Item>
+                    <Form.Item className="form-item">
+                        <Button icon={<SearchOutlined/>} type="primary" htmlType="submit"
+                                style={{marginLeft: '8px'}}>
+                            查询
+                        </Button>
+                        <Button icon={<RedoOutlined/>} style={{marginLeft: '8px'}}>
+                            重置
+                        </Button>
+                    </Form.Item>
 
-                    </Form>
-                </SearchBox>
-
-                <ContentBox>
-                    <Table data={data && data.content}
-                           title={<Title/>}
-                           columns={columns} loading={loading}
-                           total={data && data.totalElements}
-                           onChange={(page, pageSize) => setQueryParam({...queryParam, page: page - 1, size: pageSize})}
-                           current={data && data.number + 1}
-                           rowKey={(record) => (record.id)}
-                           bordered
-                           rowSelection={rowSelection}/>
-                </ContentBox>
-                {open && <AddForm open={open} setOpen={setOpen}/>}
+                </Form>
             </div>
-        </div>
+
+            <div className="table-content">
+                <Table data={data && data.content}
+                       title={<Title/>}
+                       columns={columns} loading={loading}
+                       total={data && data.totalElements}
+                       onChange={(page, pageSize) => setQueryParam({...queryParam, page: page - 1, size: pageSize})}
+                       current={data && data.number + 1}
+                       rowKey={(record) => (record.id)}
+                       bordered
+                       rowSelection={rowSelection}/>
+            </div>
+            {open && <AddForm open={open} setOpen={setOpen}/>}
+        </>
     )
 }
 

@@ -8,7 +8,7 @@ import router from "@/router";
 const theme = {
     cssVar: true,
     token: {
-        borderRadius: 2,
+        borderRadius: 4,
         // colorPrimary: '#006ad4',
         // colorPrimaryActive: '#0055ab',
         // colorPrimaryHover: '#0055ab',
@@ -20,16 +20,18 @@ const theme = {
             subMenuItemBorderRadius: 0,
             itemBorderRadius: 0,
         },
+        Input: {
+        },
         Button: {
             paddingBlock: 0,
             contentLineHeight: 1,
         },
-
         Pagination: {
-            // itemActiveBg: '#1890ff',
         },
         Table: {
             cellPaddingBlock: 12,
+        },
+        Card: {
         },
 
     },

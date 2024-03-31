@@ -5,8 +5,6 @@ import {User} from "@/api";
 function createRandomUser(): any {
     return {
         id: faker.number.int(100),
-        createdDate: faker.date.recent().toDateString(),
-        lastModifiedDate: faker.date.recent().toTimeString(),
         name: faker.person.fullName(),
         username: faker.internet.userName(),
         phone: faker.phone.number(),

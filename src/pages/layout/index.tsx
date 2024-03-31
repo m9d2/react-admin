@@ -2,7 +2,7 @@ import {Avatar, Button, Dropdown, Layout, MenuProps} from "antd";
 import React, {CSSProperties, useEffect, useState} from "react";
 import styles from "./index.module.scss"
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
-import Navigation from "@/components/ui.tsx";
+import Navigation from "@/pages/layout/components/navigation.tsx";
 import {Outlet, useNavigate} from "react-router-dom";
 import {auth} from "@/utils";
 import AuthRouter from "@/components/auth.tsx";
@@ -47,6 +47,7 @@ function Header(props: {
             const json = JSON.parse(user)
             setName(json.name)
         }
+
         async function getUserInfo() {
             const response: any = await UserInfo();
             console.log(response)
@@ -81,13 +82,15 @@ const Index = () => {
     return (
         <AuthRouter>
             <Layout style={{height: '100%', overflow: 'auto'}}>
-                <Layout.Sider width={210} trigger={null} collapsible collapsed={collapsed}>
+                <Layout.Sider width={256} trigger={null} collapsible collapsed={collapsed}>
                     <Logo collapsed={collapsed}/>
                     <Navigation collapsed={collapsed}/>
                 </Layout.Sider>
                 <Layout>
                     <Header collapsed={collapsed} setCollapsed={setCollapsed}/>
-                    <Outlet/>
+                    <div className="container">
+                        <Outlet/>
+                    </div>
                 </Layout>
             </Layout>
         </AuthRouter>

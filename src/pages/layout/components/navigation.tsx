@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {ConfigProvider, Menu, MenuProps, theme} from "antd";
+import {useEffect, useState} from "react";
+import {Menu, MenuProps} from "antd";
 import {useLocation, useNavigate} from "react-router-dom";
 import Icon from "@/components/icon.tsx";
 import {Menu as MenuApi} from "@/api";
@@ -76,70 +76,18 @@ export default function Navigation(props: { collapsed: boolean }) {
     };
 
     return (
-        <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={selectKeys}
-            defaultOpenKeys={openKeys}
-            selectedKeys={selectKeys}
-            openKeys={openKeys}
-            onOpenChange={onOpenChange}
-            onClick={onClick}
-            items={menus}
-        />
-
-    )
-}
-
-function SearchBox({style, children, className}: {
-    style?: React.CSSProperties,
-    className?: string | undefined,
-    children: React.ReactNode
-}) {
-    const {
-        token: {colorBgContainer},
-    } = theme.useToken()
-    return (
-        <ConfigProvider
-            theme={{
-                components: {
-                    Form: {
-                        itemMarginBottom: 0,
-                    },
-                },
-            }}
-        >
-            <div className={className} style={{
-                ...style,
-                overflow: 'auto',
-                padding: '18px',
-                marginBottom: '12px',
-                background: colorBgContainer,
-                display: 'flex',
-                alignItems: 'center',
-            }}>
-                {children}
-            </div>
-        </ConfigProvider>
-
-    )
-}
-
-function ContentBox({children}: { children: React.ReactNode }) {
-    const {
-        token: {colorBgContainer, borderRadiusLG},
-    } = theme.useToken()
-    return (
-        <div style={{
-            height: '100%',
-            overflow: 'auto',
-            padding: '0 18px',
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-        }}>
-            {children}
+        <div style={{padding: '0 8px'}}>
+            <Menu
+                theme="dark"
+                mode="inline"
+                defaultSelectedKeys={selectKeys}
+                defaultOpenKeys={openKeys}
+                selectedKeys={selectKeys}
+                openKeys={openKeys}
+                onOpenChange={onOpenChange}
+                onClick={onClick}
+                items={menus}
+            />
         </div>
     )
 }
-
-export {SearchBox, ContentBox}
