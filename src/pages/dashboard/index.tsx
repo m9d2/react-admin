@@ -177,12 +177,8 @@ const DataCardPanel = () => {
 
     return (
         <div className={styles.cardDataPanel}>
-            <Row gutter={[24, 24]} style={{width: '100%'}}>
-                <Col xs={{flex: '100%'}}
-                     sm={{flex: '50%'}}
-                     md={{flex: '40%'}}
-                     lg={{flex: '20%'}}
-                     xl={{flex: '10%'}}>
+            <Row gutter={[24, 24]} wrap>
+                <Col flex="1 1 25%">
                     <div className={styles.cardDataCard}>
                         <div>
                             <span>总销售额</span>
@@ -206,18 +202,14 @@ const DataCardPanel = () => {
                         </div>
                     </div>
                 </Col>
-                <Col xs={{flex: '100%'}}
-                     sm={{flex: '50%'}}
-                     md={{flex: '40%'}}
-                     lg={{flex: '20%'}}
-                     xl={{flex: '10%'}}>
+                <Col flex="1 1 25%">
                     <div className={styles.cardDataCard}>
                         <div>
                             <span>访问量</span>
                             <Statistic valueStyle={valueStyle} value={8846}/>
                         </div>
                         <div className={styles.cardDataChart}>
-                            <EChart option={option2} style={{width: '100%', height: '100%'}}/>
+                            <EChart option={option2}/>
                         </div>
                         <div className={styles.cardDataFooter}>
                             <span>日访问量</span>
@@ -225,18 +217,14 @@ const DataCardPanel = () => {
                         </div>
                     </div>
                 </Col>
-                <Col xs={{flex: '100%'}}
-                     sm={{flex: '50%'}}
-                     md={{flex: '40%'}}
-                     lg={{flex: '20%'}}
-                     xl={{flex: '10%'}}>
+                <Col flex="1 1 25%">
                     <div className={styles.cardDataCard}>
                         <div>
                             <span>支付笔数</span>
                             <Statistic valueStyle={valueStyle} value={8846}/>
                         </div>
                         <div className={styles.cardDataChart}>
-                            <EChart option={option4} style={{width: '100%', height: '100%'}}/>
+                            <EChart option={option4}/>
                         </div>
                         <div className={styles.cardDataFooter}>
                             <span>转化率</span>
@@ -244,11 +232,7 @@ const DataCardPanel = () => {
                         </div>
                     </div>
                 </Col>
-                <Col xs={{flex: '100%'}}
-                     sm={{flex: '50%'}}
-                     md={{flex: '40%'}}
-                     lg={{flex: '20%'}}
-                     xl={{flex: '10%'}}>
+                <Col flex="1 1 25%">
                     <div className={styles.cardDataCard}>
                         <div>
                             <span>访问量</span>
@@ -309,22 +293,20 @@ const Dashboard = () => {
     return (
         <Space direction='vertical' size={28} style={{width: '100%'}}>
             <DataCardPanel/>
-            <Card title="年销售额" bordered={false} style={{width: '100%'}} extra={extra}>
-                <EChart option={option} style={{width: '100%', height: '400px'}}/>
-            </Card>
-            <Card title="年销售额" bordered={false} style={{width: '100%'}} extra={extra}>
-                <EChart option={option3} style={{width: '100%', height: '400px'}}/>
-            </Card>
-            {/*<Space style={{width: '100%'}} direction="horizontal" size={28}>*/}
-            {/*    <Card title="年销售额" bordered={false} style={{width: '100%'}} extra={extra}>*/}
-            {/*        <EChart option={option} style={{width: '100%', height: '400px'}}/>*/}
-            {/*    </Card>*/}
-            {/*    <Card title="年销售额" bordered={false} style={{width: '100%'}} extra={extra}>*/}
-            {/*        <EChart option={option3} style={{width: '100%', height: '400px'}}/>*/}
-            {/*    </Card>*/}
-            {/*</Space>*/}
-        </Space>
+            <Row gutter={24}>
+                <Col span={12}>
+                    <Card title="年销售额" bordered={false} style={{width: '100%'}} extra={extra}>
+                        <EChart option={option} style={{width: '100%', height: '400px'}}/>
+                    </Card>
 
+                </Col>
+                <Col span={12}>
+                    <Card title="推广渠道占比" bordered={false} style={{width: '100%'}} extra={extra}>
+                        <EChart option={option3} style={{width: '100%', height: '400px'}}/>
+                    </Card>
+                </Col>
+            </Row>
+        </Space>
     )
 }
 

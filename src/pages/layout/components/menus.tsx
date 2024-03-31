@@ -4,12 +4,13 @@ import {useLocation, useNavigate} from "react-router-dom";
 import Icon from "@/components/icon.tsx";
 import {Menu as MenuApi} from "@/api";
 
+
 type MenuItem = {
     key: string,
     children: MenuItem[]
 }
 
-export default function Navigation(props: { collapsed: boolean }) {
+export default function Menus(props: { collapsed: boolean }) {
     const [menus, setMenus] = useState<MenuItem[]>([])
     const [openKeys, setOpenKeys] = useState<string[]>([])
     const [selectKeys, setSelectKeys] = useState<string[]>([])

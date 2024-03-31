@@ -71,7 +71,7 @@ const EChart = ({option, style, className}: { option: ECOption, style?: CSSPrope
 
     }, [option]);
 
-    return <div ref={chartRef} style={style} className={className}></div>;
+    return <div ref={chartRef} style={style} className={`charts-box ${className}`}></div>;
 
 };
 
