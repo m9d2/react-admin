@@ -6,13 +6,13 @@ import {UserInfo} from "@/api/user";
 import styles from "@/pages/layout/index.module.scss";
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
 import {toggle} from "@/store/modules/collapsed.ts"
-import {useDispatch, useSelector} from "react-redux";
+import {useAppDispatch, useAppSelector} from "@/hooks";
 
 export default function Header() {
     const [name, setName] = useState();
     const navigate = useNavigate();
-    const value = useSelector((state:any) => state.collapsed.value)
-    const dispatch = useDispatch()
+    const value = useAppSelector((state) => state.collapsed.value)
+    const dispatch = useAppDispatch()
 
     const logout = () => {
         auth.removeToken();

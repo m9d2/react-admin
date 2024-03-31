@@ -1,11 +1,16 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {request, auth} from "@/utils";
+import {auth, request} from "@/utils";
 
+interface UserState {
+    token: string
+}
+
+const initialState: UserState = {
+    token: '',
+}
 export const userSlice = createSlice({
     name: 'user',
-    initialState: {
-        token: '',
-    },
+    initialState: initialState,
     reducers: {
         setToken: (state, action) => {
             state.token = action.payload
@@ -15,7 +20,7 @@ export const userSlice = createSlice({
 
 export const {setToken} = userSlice.actions;
 
-export const fetchLogin = (loginForm: any) => {
+export const login = (loginForm: any) => {
     return async (dispatch: any) => {
         const resp: any = await request.post('/login', loginForm)
         if (resp.code != 200) {

@@ -13,9 +13,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </React.StrictMode>
 );
 
-worker.start({
-    serviceWorker: {
-        url: 'mockServiceWorker.js',
-    },
-    onUnhandledRequest: 'bypass',
-}).then()
+document.addEventListener('DOMContentLoaded', function () {
+    worker.start({
+        serviceWorker: {
+            url: 'mockServiceWorker.js',
+        },
+        onUnhandledRequest: 'bypass',
+    }).then();
+});

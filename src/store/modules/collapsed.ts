@@ -1,17 +1,26 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {RootState} from "@/store";
+
+interface CollapsedState {
+    value: boolean
+}
+
+const initialState: CollapsedState = {
+    value: false
+}
 
 export const collapsedSlice = createSlice({
     name: 'collapsed',
-    initialState: {
-        value: false,
-    },
+    initialState: initialState,
     reducers: {
-        toggle: (state) => {
+        toggle: state => {
             state.value = !state.value
         },
     },
 });
 
 export const {toggle} = collapsedSlice.actions;
+
+export const selectCollapsed = (state: RootState) => state.collapsed.value
 
 export default collapsedSlice.reducer;
