@@ -4,7 +4,7 @@ import {App, Button, Divider, Dropdown, Form, FormProps, Input, Space,} from 'an
 import Table from "@/components/table";
 import {DeleteOutlined, DownOutlined, PlusOutlined, RedoOutlined, SearchOutlined} from "@ant-design/icons";
 import {User} from "@/api";
-import AddForm from "@/pages/sys/user/components/addForm.tsx";
+import AddForm from "@/pages/sys/user/components/add-form.tsx";
 
 const Index: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);

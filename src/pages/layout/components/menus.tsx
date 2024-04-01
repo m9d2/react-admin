@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import {Menu, MenuProps} from "antd";
 import {useLocation, useNavigate} from "react-router-dom";
-import Icon from "@/components/icon.tsx";
 import {Menu as MenuApi} from "@/api";
+import SvgIcon from "@/components/svg-icon.tsx";
 
 
 type MenuItem = {
@@ -22,7 +22,7 @@ export default function Menus(props: { collapsed: boolean }) {
             return {
                 key: item.url,
                 label: item.name,
-                icon: <Icon type={item.icon}/>,
+                icon: <SvgIcon iconName={item.icon} wrapperClassName="anticon"/>,
                 onClick: item.type === 'MENU' ? () => ({}) : () => ({}),
                 children: item.type === 'DIRECTORY' && item.child.map((child: any) => {
                     return {

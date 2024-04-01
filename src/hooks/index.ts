@@ -1,3 +1,4 @@
-import {useAppDispatch, useAppSelector} from "@/hooks/store.ts";
+import {useAppDispatch, useAppSelector} from "@/hooks/useStore.ts";
+import {useDynamicSvgImport} from "@/hooks/useDynamicSvgImport.ts";
 
-export {useAppSelector, useAppDispatch};
+export {useAppSelector, useAppDispatch, useDynamicSvgImport};

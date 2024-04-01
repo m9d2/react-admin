@@ -22,7 +22,7 @@ export const menus = [
                     "name": "Dashboard",
                     "url": "/",
                     "type": "DIRECTORY",
-                    "icon": "icon-home",
+                    "icon": "home",
                     "sort": 1000
                 },
                 {
@@ -68,7 +68,7 @@ export const menus = [
                     "name": "权限管理",
                     "url": "/sys",
                     "type": "DIRECTORY",
-                    "icon": "icon-setting",
+                    "icon": "setting",
                     "sort": 9000
                 }
             ],
