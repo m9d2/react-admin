@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import type {TableProps} from 'antd';
-import {Button, Divider, Form, FormProps, Input, Space,} from 'antd';
+import {App, Button, Divider, Dropdown, Form, FormProps, Input, Space,} from 'antd';
 import Table from "@/components/table";
-import {PlusOutlined, RedoOutlined, SearchOutlined} from "@ant-design/icons";
+import {DeleteOutlined, DownOutlined, PlusOutlined, RedoOutlined, SearchOutlined} from "@ant-design/icons";
 import {User} from "@/api";
 import AddForm from "@/pages/sys/user/components/addForm.tsx";
 
-const App: React.FC = () => {
+const Index: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<Data>()
     const [queryParam, setQueryParam] = useState<QueryParam>({page: 0, size: 10})
     const [open, setOpen] = useState<boolean>(false);
+    const {message} = App.useApp();
     const columns: TableProps['columns'] = [
         {
             title: '用户ID',
@@ -65,17 +66,18 @@ const App: React.FC = () => {
             title: '操作',
             dataIndex: 'option',
             width: 180,
-            render: (record) => {
+            render: (_, record) => {
                 return (
                     <>
                         <a>编辑</a>
                         <Divider type="vertical"/>
-                        <a onClick={() => remove(record)}>删除</a>
+                        <a onClick={() => handlerRemove(record)}>更多</a>
                     </>
                 )
             }
         }
     ];
+
 
     useEffect(() => {
         function page() {
@@ -90,9 +92,11 @@ const App: React.FC = () => {
         })()
     }, [queryParam])
 
-    const remove = (record: any) => {
-        console.log('remove', record)
+    const handlerRemove = (record: any) => {
+        console.log(record.id)
+        message.info(`删除成功-id:${record.id}`)
     }
+
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
         setSelectedRowKeys(newSelectedRowKeys);
@@ -107,14 +111,23 @@ const App: React.FC = () => {
         setQueryParam({...queryParam, condition: values.condition, page: data?.number})
     };
 
+
     const Title = () => {
+        const items = [{key: 1, label: '删除', icon: <DeleteOutlined/>}];
         return (
             <div className="flex-space">
-                <span className="table-title">用户列表</span>
-                <div className="table-title-menus">
+                <Space className="table-title">
                     <Button type="primary" icon={<PlusOutlined/>} onClick={() => (setOpen(true))}>新增用户</Button>
-                    <Button type="text" icon={<RedoOutlined/>}></Button>
-                </div>
+                    {
+                        selectedRowKeys.length > 0 && <Dropdown menu={{items}} trigger={['click']}>
+                            <Button icon={<DownOutlined/>}>批量操作</Button>
+                        </Dropdown>
+                    }
+                    {
+                        selectedRowKeys.length > 0 &&
+                        <span style={{fontWeight: 'normal', fontSize: 14}}>已选{selectedRowKeys.length}条数据</span>
+                    }
+                </Space>
             </div>
         )
     }
@@ -161,4 +174,4 @@ const App: React.FC = () => {
     )
 }
 
-export default App;
+export default Index;
