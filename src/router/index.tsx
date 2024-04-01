@@ -1,6 +1,7 @@
 import {createHashRouter,} from "react-router-dom";
 import {lazy, Suspense} from "react";
 import Loading from "@/components/loading.tsx";
+import DashboardSkeleton from "@/pages/dashboard/components/skeleton.tsx"
 
 const Layout = lazy(() => import('@/pages/layout'));
 const Dashboard = lazy(() => import('@/pages/dashboard'));
@@ -16,7 +17,7 @@ const router = createHashRouter([
         children: [
             {
                 path: "dashboard",
-                element: <Suspense fallback={<Loading/>}><Dashboard/></Suspense>
+                element: <Suspense fallback={<DashboardSkeleton/>}><Dashboard/></Suspense>
             },
             {
                 path: "sys/user",
