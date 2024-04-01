@@ -11,7 +11,7 @@ const loading = {
 const App: React.FC = () => {
     return (
         <div style={loading}>
-            <Spin delay={200}/>
+            <Spin size="large" delay={200}/>
         </div>
     );
 };
