@@ -24,7 +24,7 @@ export default function Menus(props: { collapsed: boolean }) {
                 key: item.url,
                 label: item.name,
                 icon: item.icon ?
-                    <SvgIcon iconName={item.icon} wrapperClassName="anticon" color="currentColor"/> : null,
+                    <SvgIcon iconName={item.icon} wrapperClassName="anticon"/> : null,
                 onClick: item.type === 'MENU' ? () => ({}) : () => ({}),
                 children: item.type === 'DIRECTORY' && item.child.map((child: any) => {
                     return {
