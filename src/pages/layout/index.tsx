@@ -6,14 +6,14 @@ import {Outlet} from "react-router-dom";
 import AuthRouter from "@/pages/layout/components/auth-router.tsx";
 import Header from "@/pages/layout/components/header.tsx";
 import {useSelector} from "react-redux";
+import LogoIcon from "@/assets/logo.svg?react";
 
 
 function Logo(props: { collapsed: boolean, style?: CSSProperties }) {
     return (
         <div className={styles.logo} style={props.style}>
             <a>
-                <img width="auto" height="22"
-                     src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" alt="logo"/>
+                <LogoIcon width="2em" height="2em"/>
                 {!props.collapsed && <div className={styles.logoText}>Ant Design</div>}
             </a>
         </div>
@@ -22,7 +22,7 @@ function Logo(props: { collapsed: boolean, style?: CSSProperties }) {
 
 
 const Navigation = () => {
-    const value = useSelector((state:any) => state.collapsed.value)
+    const value = useSelector((state: any) => state.collapsed.value)
     return (
         <Layout.Sider width={256} trigger={null} collapsible collapsed={value} className={styles.navigation}>
             <Logo collapsed={value}/>

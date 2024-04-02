@@ -18,17 +18,21 @@ export default function Menus(props: { collapsed: boolean }) {
     const location = useLocation()
 
     function createMenus(data: any[]): MenuItem[] {
+
         return data.map((item) => {
             return {
                 key: item.url,
                 label: item.name,
-                icon: <SvgIcon iconName={item.icon} wrapperClassName="anticon"/>,
+                icon: item.icon ?
+                    <SvgIcon iconName={item.icon} wrapperClassName="anticon" color="currentColor"/> : null,
                 onClick: item.type === 'MENU' ? () => ({}) : () => ({}),
                 children: item.type === 'DIRECTORY' && item.child.map((child: any) => {
                     return {
                         key: child.url,
                         label: child.name,
                         path: child.url,
+                        icon: child.icon ?
+                            <SvgIcon iconName={item.icon} wrapperClassName="anticon" color="currentColor"/> : null
                     }
                 })
             }
