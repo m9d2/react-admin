@@ -10,13 +10,11 @@ const themeConfig: ThemeConfig = {
     cssVar: true,
     algorithm: [theme.defaultAlgorithm],
     token: {
-
         borderRadius: 4,
-        // colorPrimary: '#006ad4',
-        // colorPrimaryActive: '#0055ab',
-        // colorPrimaryHover: '#0055ab',
-        colorText: '#000000A6',
-        fontSize: 14,
+        colorPrimary: '#0060b7',
+        fontSize: 12,
+        colorLink: '#0060b7',
+        colorText: '#333333'
     },
     components: {
         Menu: {

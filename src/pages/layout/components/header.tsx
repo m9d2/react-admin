@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {auth} from "@/utils";
 import {Avatar, Button, Dropdown, MenuProps} from "antd";
-import {UserInfo} from "@/api/user";
 import styles from "@/pages/layout/index.module.scss";
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
 import {toggle} from "@/store/modules/collapsed.ts"
@@ -15,7 +14,7 @@ export default function Header() {
     const dispatch = useAppDispatch()
 
     const logout = () => {
-        auth.removeToken();
+        auth.clearUserInfo();
         navigate("/login")
     }
     const items: MenuProps['items'] = [
@@ -28,21 +27,10 @@ export default function Header() {
     const avatar = "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png";
 
     useEffect(() => {
-        const user = localStorage.getItem("user");
+        const user = auth.getUserInfo()
         if (user) {
-            const json = JSON.parse(user)
-            setName(json.name)
+            setName(user.name)
         }
-
-        async function getUserInfo() {
-            const response: any = await UserInfo();
-            return response.data;
-        }
-
-        getUserInfo().then((res) => {
-            setName(res.name)
-        })
-
     }, []);
 
     return (

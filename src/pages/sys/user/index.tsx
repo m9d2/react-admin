@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import type {TableProps} from 'antd';
-import {App, Button, Divider, Dropdown, Form, FormProps, Input, Space,} from 'antd';
+import {App, Button, Divider, Dropdown, Form, FormProps, Input, Space, Tag,} from 'antd';
 import Table from "@/components/table";
 import {DeleteOutlined, DownOutlined, PlusOutlined, RedoOutlined, SearchOutlined} from "@ant-design/icons";
 import {User} from "@/api";
-import AddForm from "@/pages/sys/user/components/add-form.tsx";
+import EidtForm from "@/pages/sys/user/components/edit-form";
 
 const Index: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
@@ -52,7 +52,8 @@ const Index: React.FC = () => {
             dataIndex: 'status',
             render: value => {
                 return (
-                    value === 1 ? "正常" : "禁用"
+                    value === 0 ? <Tag color="processing">正常</Tag> : 
+                    <Tag color="error">禁用</Tag>
                 )
             },
             width: 100,
@@ -111,7 +112,6 @@ const Index: React.FC = () => {
         setQueryParam({...queryParam, condition: values.condition, page: data?.number})
     };
 
-
     const Title = () => {
         const items = [{key: 1, label: '删除', icon: <DeleteOutlined/>}];
         return (
@@ -119,13 +119,13 @@ const Index: React.FC = () => {
                 <Space className="table-title">
                     <Button type="primary" icon={<PlusOutlined/>} onClick={() => (setOpen(true))}>新增用户</Button>
                     {
-                        selectedRowKeys.length > 0 && <Dropdown menu={{items}} trigger={['click']}>
-                            <Button icon={<DownOutlined/>}>批量操作</Button>
-                        </Dropdown>
-                    }
-                    {
-                        selectedRowKeys.length > 0 &&
-                        <span style={{fontWeight: 'normal', fontSize: 14}}>已选{selectedRowKeys.length}条数据</span>
+                        selectedRowKeys.length > 0 && 
+                        <>
+                            <Dropdown menu={{items}} trigger={['click']}>
+                                <Button icon={<DownOutlined/>}>批量操作</Button>
+                            </Dropdown>
+                            <span style={{fontWeight: 'normal', fontSize: 12}}>已选{selectedRowKeys.length}条数据</span>
+                        </>
                     }
                 </Space>
             </div>
@@ -169,7 +169,7 @@ const Index: React.FC = () => {
                        bordered
                        rowSelection={rowSelection}/>
             </div>
-            {open && <AddForm open={open} setOpen={setOpen}/>}
+            <EidtForm open={open} setOpen={setOpen} handleOk={() => save}/>
         </>
     )
 }

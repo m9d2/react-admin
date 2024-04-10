@@ -33,7 +33,7 @@ request.interceptors.response.use(
     },
     error => {
         if (error.response?.status === 401) {
-            auth.removeToken();
+            auth.clearUserInfo();
             window.location.reload();
             message.warning('登录失效');
             return;

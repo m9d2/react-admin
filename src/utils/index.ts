@@ -1,11 +1,12 @@
 import request from "@/utils/request.ts";
-import {constant} from "@/utils/constant.ts";
-import {getToken, removeToken, setToken} from "@/utils/token.ts";
+import { constant } from "@/utils/constant.ts";
+import { getToken, clearUserInfo, getUserInfo, setUserInfo } from "@/utils/auth";
 
 const auth = {
     getToken,
-    removeToken,
-    setToken,
+    getUserInfo,
+    setUserInfo,
+    clearUserInfo,
 }
 
-export {request, constant, auth}
+export { request, constant, auth }
