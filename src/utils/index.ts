@@ -1,6 +1,7 @@
 import request from "@/utils/request.ts";
 import { constant } from "@/utils/constant.ts";
 import { getToken, clearUserInfo, getUserInfo, setUserInfo } from "@/utils/auth";
+import * as common from './common.ts'
 
 const auth = {
     getToken,
@@ -9,4 +10,4 @@ const auth = {
     clearUserInfo,
 }
 
-export { request, constant, auth }
+export { request, constant, auth, common }

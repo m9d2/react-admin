@@ -2,9 +2,17 @@ import React, {useEffect, useState} from "react";
 import type {MenuProps, TableProps} from "antd";
 import {App, Button, Divider, Dropdown, Form, FormProps, Input, Space, Tag,} from "antd";
 import Table from "@/components/table";
-import {DeleteOutlined, DownOutlined, PlusOutlined, RedoOutlined, SearchOutlined,MinusCircleOutlined } from "@ant-design/icons";
+import {
+    DeleteOutlined,
+    DownOutlined,
+    MinusCircleOutlined,
+    PlusOutlined,
+    RedoOutlined,
+    SearchOutlined
+} from "@ant-design/icons";
 import {User} from "@/api";
 import EditForm from "@/pages/sys/user/components/edit-form";
+import {common} from "@/utils";
 
 const Index: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
@@ -15,7 +23,9 @@ const Index: React.FC = () => {
         size: 10,
     });
     const [open, setOpen] = useState<boolean>(false);
-    const { message } = App.useApp();
+    const [row, setRow] = useState<any>()
+    const [action, setAction] = useState('add')
+    const {message, modal} = App.useApp();
     const moreItems: MenuProps["items"] = [
         {
             label: '修改密码',
@@ -25,6 +35,10 @@ const Index: React.FC = () => {
             label: '禁用',
             key: '2',
         },
+        {
+            label: '删除',
+            key: '3',
+        }
     ]
 
     const columns: TableProps["columns"] = [
@@ -61,6 +75,14 @@ const Index: React.FC = () => {
             width: 180,
         },
         {
+            title: "性别",
+            dataIndex: "gender",
+            width: 180,
+            render: (value) => {
+                return common.getGender(value)
+            }
+        },
+        {
             title: "用户状态",
             dataIndex: "status",
             render: (value) => {
@@ -84,9 +106,9 @@ const Index: React.FC = () => {
             render: (_, record) => {
                 return (
                     <>
-                        <a>编辑</a>
+                        <a onClick={() => (modify(record))}>编辑</a>
                         <Divider type="vertical"/>
-                        <Dropdown menu={{items: moreItems, onClick: ({ key }) => handleMore(key, record)}}>
+                        <Dropdown menu={{items: moreItems, onClick: ({key}) => handleMore(key, record)}}>
                             <a>更多<DownOutlined/></a>
                         </Dropdown>
 
@@ -113,10 +135,13 @@ const Index: React.FC = () => {
         console.log(typeof key)
         switch (key) {
             case '1':
-                message.success('密码修改成功-id:'+ record.id)
+                message.success('密码修改成功-id:' + record.id)
                 break
             case '2':
-                message.success('禁用成功-id:'+ record.id)
+                message.success('禁用成功-id:' + record.id)
+                break
+            case '3':
+                message.success('删除成功-id' + record.id)
                 break
             default:
                 console.log(key, record)
@@ -142,10 +167,38 @@ const Index: React.FC = () => {
         });
     };
 
+    const modify = (record: any) => {
+        setRow(record)
+        setAction('modify')
+        setOpen(true)
+    }
+
+    const add = () => {
+        setAction('add')
+        setOpen(true)
+    }
+
+    const handleBatchOption = ({key}: {key: string}) => {
+        if (key === '1') {
+            modal.confirm({
+                title: '注意',
+                content: '请确认是否批量删除?',
+                okText: '确认',
+                cancelText: '取消',
+                closable: true,
+                onOk: () => {message.success('删除成功')},
+            })
+        }
+        if (key === '2') {
+            setSelectedRowKeys([])
+        }
+
+    }
+
     const Title = () => {
         const items: MenuProps['items'] = [
             {key: 1, label: "删除", icon: <DeleteOutlined/>},
-            {key: 2, label: "取消", icon: <MinusCircleOutlined />},
+            {key: 2, label: "取消", icon: <MinusCircleOutlined/> },
         ];
         return (
             <div className="flex-space">
@@ -153,13 +206,13 @@ const Index: React.FC = () => {
                     <Button
                         type="primary"
                         icon={<PlusOutlined/>}
-                        onClick={() => setOpen(true)}
+                        onClick={add}
                     >
                         新增用户
                     </Button>
                     {selectedRowKeys.length > 0 && (
                         <>
-                            <Dropdown menu={{items}} trigger={["click"]}>
+                            <Dropdown menu={{items, onClick: handleBatchOption}} trigger={["click"]}>
                                 <Button icon={<DownOutlined/>}>批量操作</Button>
                             </Dropdown>
                             <span style={{fontWeight: "normal", fontSize: 12}}>
@@ -215,8 +268,8 @@ const Index: React.FC = () => {
                     rowSelection={rowSelection}
                 />
             </div>
-            <EditForm open={open} setOpen={setOpen} handleOk={() => {
-            }}/>
+            {open && <EditForm row={row} action={action} open={open} onCancel={() => setOpen(false)}
+                               onOk={() => setOpen(false)}/>}
         </>
     );
 };

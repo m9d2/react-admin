@@ -1,12 +1,13 @@
-import {Api, Page, Save, UserInfo} from '@/api/user';
-import {List} from '@/api/menu'
+import * as User from '@/api/user';
+import * as Menu from '@/api/menu'
+import * as Role from '@/api/role'
 
-const User = {
-    Page, Save, Api, UserInfo
-}
+// const User = {
+//     Page, Save, Api, UserInfo
+// }
 
-const Menu = {
-    List, Api
-}
+// const Menu = {
+//     List, Api
+// }
 
-export {User, Menu}
+export {User, Menu, Role}

@@ -5,7 +5,7 @@ interface QueryParam {
 }
 
 interface Response {
-    data?: Data,
+    data?: Data | any[],
     code?: number,
     msg?: string
 }
