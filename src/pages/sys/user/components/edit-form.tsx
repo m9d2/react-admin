@@ -45,7 +45,7 @@ export default function ModifyForm(props: {
       if (roles.length === 0) {
         const resp: Response<any[]> = await Role.All();
         if (resp.data) {
-            setRoles(resp.data);
+          setRoles(resp.data);
         }
       }
     };
@@ -78,7 +78,7 @@ export default function ModifyForm(props: {
         <Select
           placeholder="请选择"
           style={{ width: 120 }}
-          options={roles.map(role => ({ label: role.name, value: role.id }))}
+          options={roles.map((role) => ({ label: role.name, value: role.id }))}
         />
       ),
       rules: [{ required: true }],
@@ -92,23 +92,24 @@ export default function ModifyForm(props: {
       label: "性别",
       name: "gender",
       child: (
-        <Radio.Group defaultValue={1}>
+        <Radio.Group>
           <Radio value={1}>男</Radio>
           <Radio value={2}>女</Radio>
         </Radio.Group>
       ),
+      initialValue: 1,
     },
   ];
 
   const modifyFormItems: FormItem[] = [
     {
-        label: "id",
-        name: "id",
-        child: <Input />,
-        rules: [{ required: true }],
-        initialValue: row?.id,
-        hidden: true,
-      },
+      label: "id",
+      name: "id",
+      child: <Input />,
+      rules: [{ required: true }],
+      initialValue: row?.id,
+      hidden: true,
+    },
     {
       label: "用户名",
       name: "username",
@@ -130,7 +131,7 @@ export default function ModifyForm(props: {
         <Select
           placeholder="请选择"
           style={{ width: 120 }}
-          options={roles.map(role => ({ label: role.name, value: role.id }))}
+          options={roles.map((role) => ({ label: role.name, value: role.id }))}
         />
       ),
       rules: [{ required: true }],
@@ -168,7 +169,7 @@ export default function ModifyForm(props: {
   }
   if (action === "modify") {
     return (
-      <Modal open={open} title={"更新用户"} onCancel={onCancel} >
+      <Modal open={open} title={"更新用户"} onCancel={onCancel}>
         <Form
           onFinish={modify}
           onCancel={handleCancel}

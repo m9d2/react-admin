@@ -1,18 +1,21 @@
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface QueryParam {
-    condition?: string | undefined,
-    page?: number | undefined,
-    size?: number | undefined
+    condition?: string;
+    page?: number;
+    size?: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Response<T> {
-    data?: T,
-    code?: number,
-    msg?: string
+    data?: T | undefined;
+    code?: number;
+    msg?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface PageData {
-    content: any[] | undefined,
-    totalElements: number,
-    number: number,
+    content: any[];
+    totalElements: number;
+    number: number;
 }
-
