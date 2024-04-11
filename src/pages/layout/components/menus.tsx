@@ -85,6 +85,7 @@ export default function Menus(props: { collapsed: boolean }) {
             <Menu
                 theme="dark"
                 mode="inline"
+                style={{fontSize: 14}}
                 defaultSelectedKeys={selectKeys}
                 defaultOpenKeys={openKeys}
                 selectedKeys={selectKeys}

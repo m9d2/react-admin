@@ -1,8 +1,8 @@
-import {Api, Page, UserInfo} from '@/api/user';
+import {Api, Page, Save, UserInfo} from '@/api/user';
 import {List} from '@/api/menu'
 
 const User = {
-    Page, Api, UserInfo
+    Page, Save, Api, UserInfo
 }
 
 const Menu = {

@@ -1,1 +1,3 @@
-export const constant = {}
+export const constant = {
+    SUCCESS_CODE: 200
+}
