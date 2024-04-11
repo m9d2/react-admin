@@ -4,14 +4,15 @@ interface QueryParam {
     size?: number | undefined
 }
 
-interface Response {
-    data?: Data,
+interface Response<T> {
+    data?: T,
     code?: number,
     msg?: string
 }
 
-interface Data {
+interface PageData {
     content: any[] | undefined,
     totalElements: number,
     number: number,
 }
+

@@ -4,7 +4,7 @@ const Api = {
     LIST: '/menu/tree'
 }
 
-async function List(): Promise<Response> {
+async function List(): Promise<Response<any>> {
     return await request.get(Api.LIST)
 }
 

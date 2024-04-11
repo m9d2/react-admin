@@ -1,11 +1,13 @@
 import {Button, Form as AForm, FormProps, Space} from "antd";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export interface FormItem {
     label: string,
     name: string,
     rules?: any[],
     child: React.ReactElement,
+    initialValue?: any,
+    hidden?: boolean,
 }
 
 
@@ -21,10 +23,17 @@ const layout = {
     wrapperCol: {span: 12}
 }
 
+
 const Form = (props: Props) => {
     const [loading, setLoading] = useState(false)
     const {onCancel, onFinish, items} = props
     const [form] = AForm.useForm()
+
+    useEffect(() => {
+        form.resetFields()
+    }, [form])
+
+    
     const handleOnCancel = () => {
         if (onCancel) {
             onCancel()
@@ -46,7 +55,7 @@ const Form = (props: Props) => {
         <AForm form={form} {...layout} onFinish={handleOnFinish}>
             {items.map((item, index) => {
                 return (
-                    <AForm.Item key={index} label={item.label} name={item.name} rules={item.rules}>
+                    <AForm.Item key={index} label={item.label} name={item.name} rules={item.rules} initialValue={item.initialValue} hidden={item.hidden}>
                         {item.child}
                     </AForm.Item>
                 )
