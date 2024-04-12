@@ -12,7 +12,7 @@ const themeConfig: ThemeConfig = {
   token: {
     borderRadius: 4,
     colorPrimary: "#0060b7",
-    fontSize: 12,
+    fontSize: 13,
     colorLink: "#0060b7",
     colorText: "#333333",
   },
