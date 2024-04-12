@@ -138,7 +138,7 @@ export default function ModifyForm(props: {
         {
             label: "用户名",
             name: "username",
-            child: <Input/>,
+            child: <Input disabled/>,
             rules: [{required: true}],
         },
         {

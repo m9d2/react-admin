@@ -27,20 +27,24 @@ const Index: React.FC = () => {
     const [row, setRow] = useState<any>();
     const [action, setAction] = useState("add");
     const {message, modal} = App.useApp();
-    const moreItems: MenuProps["items"] = [
-        {
-            label: "修改密码",
-            key: "1",
-        },
-        {
-            label: "禁用",
-            key: "2",
-        },
-        {
-            label: "删除",
-            key: "3",
-        },
-    ];
+
+    const getMoreItems = (record: any) => {
+        const moreItems: MenuProps["items"] = [
+            {
+                label: "修改密码",
+                key: "1",
+            },
+            {
+                label: record.status === 1 ? '启用' : '禁用',
+                key: "2",
+            },
+            {
+                label: "删除",
+                key: "3",
+            },
+        ];
+        return moreItems
+    }
 
     const columns: TableProps["columns"] = [
         {
@@ -111,7 +115,7 @@ const Index: React.FC = () => {
                         <Divider type="vertical"/>
                         <Dropdown
                             menu={{
-                                items: moreItems,
+                                items: getMoreItems(record),
                                 onClick: ({key}) => handleMore(key, record),
                             }}
                         >
@@ -148,6 +152,7 @@ const Index: React.FC = () => {
                     message.success("密码修改成功-id:" + record.id);
                     break;
                 case "2":
+                    await User.Modify({id: record.id, status: record.status === 0 ? 1 : 0})
                     message.success("禁用成功-id:" + record.id);
                     break;
                 case "3":
