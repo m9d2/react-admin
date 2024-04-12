@@ -88,7 +88,7 @@ const Index: React.FC = () => {
             dataIndex: "status",
             render: (value) => {
                 return value === 0 ? (
-                    <Tag color="processing">正常</Tag>
+                    <Tag color="processing">启用</Tag>
                 ) : (
                     <Tag color="error">禁用</Tag>
                 );
@@ -142,21 +142,23 @@ const Index: React.FC = () => {
     }, [queryParam]);
 
     const handleMore = (key: string, record: any) => {
-        console.log(typeof key);
-        switch (key) {
-            case "1":
-                message.success("密码修改成功-id:" + record.id);
-                break;
-            case "2":
-                message.success("禁用成功-id:" + record.id);
-                break;
-            case "3":
-                message.success("删除成功-id" + record.id);
-                break;
-            default:
-                console.log(key, record);
-                break;
-        }
+        (async () => {
+            switch (key) {
+                case "1":
+                    message.success("密码修改成功-id:" + record.id);
+                    break;
+                case "2":
+                    message.success("禁用成功-id:" + record.id);
+                    break;
+                case "3":
+                    await User.Delete(record.id)
+                    message.success("删除成功");
+                    break;
+                default:
+                    break;
+            }
+            setQueryParam({...queryParam})
+        })()
     };
 
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
@@ -187,6 +189,11 @@ const Index: React.FC = () => {
         setAction("modify");
         setOpen(true);
     };
+
+    const handleOnOk = () => {
+        setOpen(false)
+        setQueryParam({...queryParam})
+    }
 
     const handleBatchOption = ({key}: { key: string }) => {
         if (key === "1") {
@@ -285,7 +292,7 @@ const Index: React.FC = () => {
                 action={action}
                 open={open}
                 onCancel={() => setOpen(false)}
-                onOk={() => setOpen(false)}
+                onOk={handleOnOk}
             />
         </>
     );

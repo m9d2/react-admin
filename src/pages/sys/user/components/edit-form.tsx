@@ -5,6 +5,8 @@ import {Role, User} from "@/api";
 import {constant} from "@/utils";
 import Form, {FormItem} from "@/components/form.tsx";
 
+const {TextArea} = Input;
+
 export default function ModifyForm(props: {
     open: boolean | undefined;
     onOk: () => void;
@@ -91,15 +93,37 @@ export default function ModifyForm(props: {
             child: <Input/>,
         },
         {
+            label: "邮箱",
+            name: "email",
+            child: <Input/>,
+        },
+        {
             label: "性别",
             name: "gender",
             child: (
                 <Radio.Group>
-                    <Radio value={1}>男</Radio>
-                    <Radio value={2}>女</Radio>
+                    <Radio value={'1'}>男</Radio>
+                    <Radio value={'2'}>女</Radio>
                 </Radio.Group>
             ),
-            initialValue: 1,
+            initialValue: '1',
+        },
+        {
+            label: '状态',
+            name: 'status',
+            child: (
+                <Select
+                    placeholder="请选择"
+                    style={{width: 120}}
+                    options={[{label: '启用', value: 0}, {label: '禁用', value: 1}]}
+                />
+            ),
+            initialValue: 0,
+        },
+        {
+            label: "备注",
+            name: "remark",
+            child: <TextArea/>,
         },
     ];
 
@@ -145,10 +169,31 @@ export default function ModifyForm(props: {
             name: "gender",
             child: (
                 <Radio.Group>
-                    <Radio value={"1"}>男</Radio>
-                    <Radio value={"2"}>女</Radio>
+                    <Radio value={'1'}>男</Radio>
+                    <Radio value={'2'}>女</Radio>
                 </Radio.Group>
             ),
+        },
+        {
+            label: "邮箱",
+            name: "email",
+            child: <Input/>,
+        },
+        {
+            label: '状态',
+            name: 'status',
+            child: (
+                <Select
+                    placeholder="请选择"
+                    style={{width: 120}}
+                    options={[{label: '启用', value: 0}, {label: '禁用', value: 1}]}
+                />
+            )
+        },
+        {
+            label: "备注",
+            name: "remark",
+            child: <TextArea/>,
         },
     ];
 
