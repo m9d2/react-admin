@@ -13,7 +13,7 @@ function Logo(props: { collapsed: boolean, style?: CSSProperties }) {
         <div className={styles.logo} style={props.style}>
             <a>
                 <DynamicsSvgIcon iconName="logo"/>
-                {!props.collapsed && <div className={styles.logoText}>Ant Design</div>}
+                {!props.collapsed && <div className={styles.logoText}>管理系统</div>}
             </a>
         </div>
     )
