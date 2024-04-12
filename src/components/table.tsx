@@ -40,7 +40,7 @@ export default function Table(props: {
                 dataSource={props.data}
                 loading={props.loading}
                 bordered={props.bordered}
-                scroll={{y: 600, x: true, scrollToFirstRowOnChange: true}}
+                scroll={{y: 560, x: true, scrollToFirstRowOnChange: true}}
                 pagination={paginationConfig}
                 rowKey={props.rowKey}
             />

@@ -34,8 +34,11 @@ request.interceptors.response.use(
     error => {
         if (error.response?.status === 401) {
             auth.clearUserInfo();
-            window.location.reload();
-            message.warning('登录失效');
+            // message.error('未登录或登录超时。请重新登录');
+            setTimeout(() => {
+                window.location.reload();
+            }, 500)
+
             return;
         }
         if (error.code === 'ECONNABORTED') {

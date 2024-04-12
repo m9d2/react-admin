@@ -9,6 +9,7 @@ const User = lazy(() => import('@/pages/sys/user'));
 const Menu = lazy(() => import('@/pages/sys/menu'));
 const Role = lazy(() => import('@/pages/sys/role'));
 const Login = lazy(() => import('@/pages/login'));
+const Log = lazy(() => import('@/pages/sys/log/log'));
 
 const router = createHashRouter([
     {
@@ -30,6 +31,10 @@ const router = createHashRouter([
             {
                 path: "sys/menu",
                 element: <Suspense fallback={<Loading/>}><Menu/></Suspense>
+            },
+            {
+                path: "sys/log",
+                element: <Suspense fallback={<Loading/>}><Log/></Suspense>
             }
         ]
     },

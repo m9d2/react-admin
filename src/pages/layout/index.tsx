@@ -8,6 +8,7 @@ import Header from "@/pages/layout/components/header.tsx";
 import {useSelector} from "react-redux";
 import {DynamicsSvgIcon} from "@/components/svg-icon.tsx";
 
+const {Footer} = Layout
 function Logo(props: { collapsed: boolean, style?: CSSProperties }) {
     return (
         <div className={styles.logo} style={props.style}>
@@ -40,6 +41,11 @@ const Index = () => {
                     <div className="container">
                         <Outlet/>
                     </div>
+                    <Footer style={{padding: 8}}>
+                        <div style={{display: "flex", justifyContent: 'center'}}>
+                            <span style={{color: '#676a64', fontSize: 12}}>© 2024 Copyright</span>
+                        </div>
+                    </Footer>
                 </Layout>
             </Layout>
         </AuthRouter>

@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
 import type {MenuProps, TableProps} from "antd";
-import {App, Button, Divider, Dropdown, Form, FormProps, Input, Space, Tag,} from "antd";
+import {App, Button, Card, Divider, Dropdown, Form, FormProps, Input, Space, Tag,} from "antd";
 import Table from "@/components/table";
 import {
     DeleteOutlined,
     DownOutlined,
+    EditOutlined,
     MinusCircleOutlined,
     PlusOutlined,
     RedoOutlined,
     SearchOutlined,
-    EditOutlined,
 } from "@ant-design/icons";
 import {User} from "@/api";
 import EditForm from "@/pages/sys/user/components/edit-form";
@@ -108,7 +108,7 @@ const Index: React.FC = () => {
                     <>
 
                         <a onClick={() => modify(record)}>编辑
-                            <EditOutlined />
+                            <EditOutlined/>
                         </a>
                         <Divider type="vertical"/>
                         <Dropdown
@@ -119,7 +119,7 @@ const Index: React.FC = () => {
                         >
                             <a>
                                 更多
-                                <DownOutlined />
+                                <DownOutlined/>
                             </a>
                         </Dropdown>
                     </>
@@ -246,8 +246,8 @@ const Index: React.FC = () => {
     };
 
     return (
-        <>
-            <div className="table-search">
+        <Space direction='vertical'>
+            <Card>
                 <Form
                     name="basic"
                     autoComplete="off"
@@ -272,9 +272,9 @@ const Index: React.FC = () => {
                         </Space>
                     </Form.Item>
                 </Form>
-            </div>
+            </Card>
 
-            <div className="table-content">
+            <Card>
                 <Table
                     data={data && data.content}
                     title={<Title/>}
@@ -289,7 +289,7 @@ const Index: React.FC = () => {
                     bordered
                     rowSelection={rowSelection}
                 />
-            </div>
+            </Card>
             <EditForm
                 row={row}
                 action={action}
@@ -297,7 +297,7 @@ const Index: React.FC = () => {
                 onCancel={() => setOpen(false)}
                 onOk={handleOnOk}
             />
-        </>
+        </Space>
     );
 };
 

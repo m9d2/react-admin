@@ -179,7 +179,7 @@ const DataCardPanel = () => {
         <div className={styles.cardDataPanel}>
             <Row gutter={[24, 24]} wrap>
                 <Col flex="1 1 25%">
-                    <div className={styles.cardDataCard}>
+                    <Card>
                         <div>
                             <span>总销售额</span>
                             <Statistic valueStyle={valueStyle} value={126560} prefix="￥"/>
@@ -200,10 +200,10 @@ const DataCardPanel = () => {
                             <span>日销售额</span>
                             <span>￥123,54</span>
                         </div>
-                    </div>
+                    </Card>
                 </Col>
                 <Col flex="1 1 25%">
-                    <div className={styles.cardDataCard}>
+                    <Card>
                         <div>
                             <span>访问量</span>
                             <Statistic valueStyle={valueStyle} value={8846}/>
@@ -215,10 +215,10 @@ const DataCardPanel = () => {
                             <span>日访问量</span>
                             <span>1234</span>
                         </div>
-                    </div>
+                    </Card>
                 </Col>
                 <Col flex="1 1 25%">
-                    <div className={styles.cardDataCard}>
+                    <Card>
                         <div>
                             <span>支付笔数</span>
                             <Statistic valueStyle={valueStyle} value={8846}/>
@@ -230,10 +230,10 @@ const DataCardPanel = () => {
                             <span>转化率</span>
                             <span>60%</span>
                         </div>
-                    </div>
+                    </Card>
                 </Col>
                 <Col flex="1 1 25%">
-                    <div className={styles.cardDataCard}>
+                    <Card>
                         <div>
                             <span>访问量</span>
                             <Statistic valueStyle={valueStyle} value={8846}/>
@@ -254,7 +254,7 @@ const DataCardPanel = () => {
                             <span>日访问量</span>
                             <span>1234</span>
                         </div>
-                    </div>
+                    </Card>
                 </Col>
             </Row>
         </div>

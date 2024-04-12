@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import type {MenuProps, TableProps} from "antd";
-import {App, Button, Divider, Dropdown, Form, FormProps, Input, Space,} from "antd";
+import {App, Button, Card, Divider, Dropdown, Form, FormProps, Input, Space,} from "antd";
 import Table from "@/components/table";
 import {DownOutlined, EditOutlined, PlusOutlined, RedoOutlined, SearchOutlined,} from "@ant-design/icons";
 import {Role, User} from "@/api";
@@ -154,8 +154,8 @@ const Index: React.FC = () => {
     };
 
     return (
-        <>
-            <div className="table-search">
+        <Space direction='vertical'>
+            <Card>
                 <Form
                     name="basic"
                     autoComplete="off"
@@ -180,9 +180,9 @@ const Index: React.FC = () => {
                         </Space>
                     </Form.Item>
                 </Form>
-            </div>
+            </Card>
 
-            <div className="table-content">
+            <Card>
                 <Table
                     data={data && data.content}
                     title={<Title/>}
@@ -196,7 +196,7 @@ const Index: React.FC = () => {
                     rowKey={(record) => record.id}
                     bordered
                 />
-            </div>
+            </Card>
             <EditForm
                 row={row}
                 action={action}
@@ -204,7 +204,7 @@ const Index: React.FC = () => {
                 onCancel={() => setOpen(false)}
                 onOk={handleOnOk}
             />
-        </>
+        </Space>
     );
 };
 

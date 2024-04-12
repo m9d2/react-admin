@@ -83,8 +83,8 @@ export default function Menus(props: { collapsed: boolean }) {
     return (
         <div style={{padding: '0 8px'}}>
             <Menu
-                theme="dark"
                 mode="inline"
+                theme='dark'
                 style={{fontSize: 13}}
                 defaultSelectedKeys={selectKeys}
                 defaultOpenKeys={openKeys}

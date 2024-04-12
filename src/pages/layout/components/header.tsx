@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {auth} from "@/utils";
-import {Avatar, Button, Dropdown, MenuProps} from "antd";
+import {Avatar, Button, Dropdown, Layout, MenuProps} from "antd";
 import styles from "@/pages/layout/index.module.scss";
 import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
 import {toggle} from "@/store/modules/collapsed.ts"
@@ -12,6 +12,7 @@ export default function Header() {
     const navigate = useNavigate();
     const value = useAppSelector((state) => state.collapsed.value)
     const dispatch = useAppDispatch()
+    const {Header} = Layout
 
     const logout = () => {
         auth.clearUserInfo();
@@ -34,7 +35,7 @@ export default function Header() {
     }, []);
 
     return (
-        <div className={styles.header}>
+        <Header className={styles.header}>
             <Button
                 type="text"
                 icon={value ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
@@ -44,9 +45,9 @@ export default function Header() {
             <Dropdown menu={{items}} placement="bottom" arrow>
                 <Button type="text" className="flex" style={{height: '48px'}}>
                     <Avatar size={32} src={avatar}/>
-                    <span style={{color: 'rgba(0, 0, 0, 0.45)', marginLeft: '8px'}}>{name}</span>
+                    <span style={{marginLeft: '8px'}}>{name}</span>
                 </Button>
             </Dropdown>
-        </div>
+        </Header>
     )
 }
