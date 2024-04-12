@@ -6,14 +6,13 @@ import {Outlet} from "react-router-dom";
 import AuthRouter from "@/pages/layout/components/auth-router.tsx";
 import Header from "@/pages/layout/components/header.tsx";
 import {useSelector} from "react-redux";
-import LogoIcon from "@/assets/logo.svg?react";
-
+import {DynamicsSvgIcon} from "@/components/svg-icon.tsx";
 
 function Logo(props: { collapsed: boolean, style?: CSSProperties }) {
     return (
         <div className={styles.logo} style={props.style}>
             <a>
-                <LogoIcon width="2em" height="2em"/>
+                <DynamicsSvgIcon iconName="logo"/>
                 {!props.collapsed && <div className={styles.logoText}>Ant Design</div>}
             </a>
         </div>

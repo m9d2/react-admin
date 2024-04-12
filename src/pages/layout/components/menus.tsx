@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Menu, MenuProps} from "antd";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Menu as MenuApi} from "@/api";
-import SvgIcon from "@/components/svg-icon.tsx";
+import {DynamicsSvgIcon} from "@/components/svg-icon.tsx";
 
 
 type MenuItem = {
@@ -24,7 +24,7 @@ export default function Menus(props: { collapsed: boolean }) {
                 key: item.url,
                 label: item.name,
                 icon: item.icon ?
-                    <SvgIcon iconName={item.icon} wrapperClassName="anticon"/> : null,
+                    <DynamicsSvgIcon iconName={item.icon}/> : null,
                 onClick: item.type === 'MENU' ? () => ({}) : () => ({}),
                 children: item.type === 'DIRECTORY' && item.child.map((child: any) => {
                     return {
@@ -32,7 +32,7 @@ export default function Menus(props: { collapsed: boolean }) {
                         label: child.name,
                         path: child.url,
                         icon: child.icon ?
-                            <SvgIcon iconName={item.icon} wrapperClassName="anticon" color="currentColor"/> : null
+                            <DynamicsSvgIcon iconName={child.icon} /> : null
                     }
                 })
             }

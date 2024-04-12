@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
-    "@svgr/plugin-svgo": "^8.1.0",
     "antd": "^5.15.4",
     "axios": "^1.6.8",
     "echarts": "^5.5.0",

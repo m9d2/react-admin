@@ -23,6 +23,7 @@ import {
 import { User } from "@/api";
 import EditForm from "@/pages/sys/user/components/edit-form";
 import { common } from "@/utils";
+import {DynamicsSvgIcon} from "@/components/svg-icon.tsx";
 
 const Index: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
@@ -126,7 +127,7 @@ const Index: React.FC = () => {
             >
               <a>
                 更多
-                <DownOutlined />
+                <DynamicsSvgIcon iconName='select'/>
               </a>
             </Dropdown>
           </>
