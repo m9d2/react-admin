@@ -7,19 +7,16 @@ interface Props {
     children: React.ReactNode,
     onOk?: (value: any) => void,
     onCancel?: () => void,
-    hasFooter?: boolean
+    hasFooter?: boolean,
+    style?: React.CSSProperties,
 }
 
 const Modal = (props: Props) => {
-    const {open, title, children, onOk, onCancel, hasFooter = false} = props
+    const {open, title, children, onOk, onCancel, hasFooter = false, style} = props
 
     const Title = () => {
         return (
-            <>
-                <div>
-                    <span>{title}</span>
-                </div>
-            </>
+            <span>{title}</span>
         )
     }
 
@@ -33,7 +30,9 @@ const Modal = (props: Props) => {
     }
 
     return (
-        <AModal open={open} onOk={onOk} onCancel={onCancel} title={<Title/>} footer={hasFooter ? <Footer/> : null} forceRender>
+        <AModal style={{...style}} open={open} onOk={onOk} onCancel={onCancel}
+                title={<Title/>}
+                footer={hasFooter ? <Footer/> : null} forceRender>
             {children}
         </AModal>
     )

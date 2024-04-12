@@ -41,7 +41,7 @@ export default function Menus(props: { collapsed: boolean }) {
 
     useEffect(() => {
         (async () => {
-            const res = await MenuApi.List()
+            const res = await MenuApi.MyMenus()
             if (Array.isArray(res.data)) {
                 setMenus(createMenus(res.data))
             }
@@ -85,7 +85,7 @@ export default function Menus(props: { collapsed: boolean }) {
             <Menu
                 theme="dark"
                 mode="inline"
-                style={{fontSize: 13}}
+                style={{fontSize: 14}}
                 defaultSelectedKeys={selectKeys}
                 defaultOpenKeys={openKeys}
                 selectedKeys={selectKeys}

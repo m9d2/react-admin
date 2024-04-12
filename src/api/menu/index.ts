@@ -1,11 +1,14 @@
 import {request} from "@/utils";
 
-const Api = {
-    LIST: '/menu/tree'
+export const Api = {
+    LIST: '/menu/tree',
+    MY: '/menu/current/tree',
 }
 
-async function List(): Promise<Response<any>> {
+export async function List(): Promise<Response<any>> {
     return await request.get(Api.LIST)
 }
 
-export {List, Api}
+export async function MyMenus(): Promise<Response<any>> {
+    return await request.get(Api.MY)
+}

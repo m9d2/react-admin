@@ -15,6 +15,7 @@ interface Props {
     onFinish?: (values: any) => Promise<boolean>;
     items: FormItem[];
     initialValues?: object,
+    style?: React.CSSProperties,
 }
 
 const layout = {
@@ -24,13 +25,14 @@ const layout = {
 
 const Form = (props: Props) => {
     const [loading, setLoading] = useState(false);
-    const {onCancel, onFinish, items, initialValues} = props;
+    const {onCancel, onFinish, items, initialValues, style} = props;
     const [form] = AForm.useForm();
 
     const handleOnCancel = () => {
         if (onCancel) {
             onCancel();
         }
+        setLoading(false)
         form.resetFields();
     };
 
@@ -45,35 +47,44 @@ const Form = (props: Props) => {
         setLoading(false);
     };
 
+    const submit = () => {
+        form.submit()
+    }
+
     useEffect(() => {
         form.resetFields()
     }, [initialValues]);
 
     return (
-        <AForm form={form} {...layout} onFinish={handleOnFinish} initialValues={{...initialValues}}>
-            {items.map((item, index) => {
-                return (
-                    <AForm.Item
-                        key={index}
-                        label={item.label}
-                        name={item.name}
-                        rules={item.rules}
-                        initialValue={item.initialValue}
-                        hidden={item.hidden}
-                    >
-                        {item.child}
-                    </AForm.Item>
-                );
-            })}
+        <>
+            <AForm style={{...style}}
+                   form={form} {...layout} onFinish={handleOnFinish} initialValues={{...initialValues}}>
+                <div>
+                    {items.map((item, index) => {
+                        return (
+                            <AForm.Item
+                                key={index}
+                                label={item.label}
+                                name={item.name}
+                                rules={item.rules}
+                                initialValue={item.initialValue}
+                                hidden={item.hidden}
+                            >
+                                {item.child}
+                            </AForm.Item>
+                        );
+                    })}
+                </div>
+            </AForm>
             <Space className="flex-end">
                 <Button type="default" onClick={handleOnCancel}>
                     取消
                 </Button>
-                <Button type="primary" htmlType="submit" loading={loading}>
+                <Button type="primary" htmlType="submit" loading={loading} onClick={submit}>
                     确定
                 </Button>
             </Space>
-        </AForm>
+        </>
     );
 };
 

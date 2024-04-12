@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Button, Checkbox, Form, type FormProps, Input, theme} from 'antd';
+import {Alert, App, Button, Checkbox, Form, type FormProps, Input, theme} from 'antd';
 import {EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined} from "@ant-design/icons";
 import styles from "./index.module.scss";
 import {login} from "@/store/modules/user.ts";
@@ -21,6 +21,7 @@ export default function Page() {
     const [loading, setLoading] = React.useState<boolean>(false)
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
+    const {message} = App.useApp();
 
     const initialValues = {
         username: 'admin',
@@ -39,6 +40,7 @@ export default function Page() {
             if (msg) {
                 setTextMessage(msg);
             } else {
+                message.success('登录成功')
                 navigate(import.meta.env.VITE_APP_HOMEPAGE)
             }
             setLoading(false)

@@ -8,7 +8,7 @@ export default function Table(props: {
     columns: TableProps['columns'],
     loading: boolean,
     total: number | undefined,
-    rowSelection: TableRowSelection<any> | undefined,
+    rowSelection?: TableRowSelection<any> | undefined,
     current: number | undefined,
     onChange: (page: number, pageSize: number) => void,
     rowKey: string | number | symbol | GetRowKey<any> | undefined,

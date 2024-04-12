@@ -9,11 +9,11 @@ import {
     PlusOutlined,
     RedoOutlined,
     SearchOutlined,
+    EditOutlined,
 } from "@ant-design/icons";
 import {User} from "@/api";
 import EditForm from "@/pages/sys/user/components/edit-form";
 import {common} from "@/utils";
-import {DynamicsSvgIcon} from "@/components/svg-icon.tsx";
 
 const Index: React.FC = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
@@ -50,7 +50,7 @@ const Index: React.FC = () => {
         {
             title: "用户ID",
             dataIndex: "id",
-            width: 100,
+            width: 80,
         },
         {
             title: "登录名称",
@@ -64,25 +64,20 @@ const Index: React.FC = () => {
             ellipsis: true,
         },
         {
-            title: "部门",
-            dataIndex: "department",
-            width: 180,
-        },
-        {
             title: "手机号",
             dataIndex: "phone",
             ellipsis: true,
-            width: 180,
+            width: 120,
         },
         {
             title: "邮箱",
             dataIndex: "email",
-            width: 180,
+            width: 200,
         },
         {
             title: "性别",
             dataIndex: "gender",
-            width: 180,
+            width: 80,
             render: (value) => {
                 return common.getGender(value);
             },
@@ -111,7 +106,10 @@ const Index: React.FC = () => {
             render: (_, record) => {
                 return (
                     <>
-                        <a onClick={() => modify(record)}>编辑</a>
+
+                        <a onClick={() => modify(record)}>编辑
+                            <EditOutlined />
+                        </a>
                         <Divider type="vertical"/>
                         <Dropdown
                             menu={{
@@ -121,7 +119,7 @@ const Index: React.FC = () => {
                         >
                             <a>
                                 更多
-                                <DynamicsSvgIcon iconName='select'/>
+                                <DownOutlined />
                             </a>
                         </Dropdown>
                     </>
