@@ -1,22 +1,21 @@
 import {createHashRouter,} from "react-router-dom";
-import {Suspense} from "react";
-import Loading from "@/components/loading.tsx";
+import {lazy, Suspense} from "react";
 import DashboardSkeleton from "@/pages/dashboard/components/skeleton.tsx"
-import Layout from "@/pages/layout";
-import Dashboard from "@/pages/dashboard";
-import User from "@/pages/sys/user";
-import Role from "@/pages/sys/role";
-import Menu from "@/pages/sys/menu";
-import Login from "@/pages/login";
-import Log from "@/pages/sys/log/log.tsx";
 
-// const Layout = lazy(() => import('@/pages/layout'));
-// const Dashboard = lazy(() => import('@/pages/dashboard'));
-// const User = lazy(() => import('@/pages/sys/user'));
-// const Menu = lazy(() => import('@/pages/sys/menu'));
-// const Role = lazy(() => import('@/pages/sys/role'));
-// const Login = lazy(() => import('@/pages/login'));
-// const Log = lazy(() => import('@/pages/sys/log/log'));
+// eslint-disable-next-line react-refresh/only-export-components
+const Layout = lazy(() => import('@/pages/layout'));
+// eslint-disable-next-line react-refresh/only-export-components
+const Dashboard = lazy(() => import('@/pages/dashboard'));
+// eslint-disable-next-line react-refresh/only-export-components
+const User = lazy(() => import('@/pages/sys/user'));
+// eslint-disable-next-line react-refresh/only-export-components
+const Menu = lazy(() => import('@/pages/sys/menu'));
+// eslint-disable-next-line react-refresh/only-export-components
+const Role = lazy(() => import('@/pages/sys/role'));
+// eslint-disable-next-line react-refresh/only-export-components
+const Login = lazy(() => import('@/pages/login'));
+// eslint-disable-next-line react-refresh/only-export-components
+const Log = lazy(() => import('@/pages/sys/log/log'));
 
 
 const router = createHashRouter([
@@ -48,7 +47,7 @@ const router = createHashRouter([
     },
     {
         path: "/login",
-        element: <Suspense fallback={<Loading/>}><Login/></Suspense>,
+        element: <Login/>,
     },
 ]);
 

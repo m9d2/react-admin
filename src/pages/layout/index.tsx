@@ -1,5 +1,5 @@
 import {Layout} from "antd";
-import {CSSProperties} from "react";
+import {CSSProperties, Suspense} from "react";
 import styles from "./index.module.scss"
 import Menus from "@/pages/layout/components/menus.tsx";
 import {Outlet} from "react-router-dom";
@@ -7,6 +7,7 @@ import AuthRouter from "@/pages/layout/components/auth-router.tsx";
 import Header from "@/pages/layout/components/header.tsx";
 import {useSelector} from "react-redux";
 import {DynamicsSvgIcon} from "@/components/svg-icon.tsx";
+import Loading from "@/components/loading.tsx";
 
 const {Footer, Content} = Layout
 
@@ -41,7 +42,9 @@ const Index = () => {
                 <Layout>
                     <Header/>
                     <Content style={{padding: 16, width: '100%', height: '100%', overflow: "auto"}}>
-                        <Outlet/>
+                        <Suspense fallback={<Loading/>}>
+                            <Outlet/>
+                        </Suspense>
                     </Content>
                     <Footer style={{padding: 8}}>
                         <div style={{display: "flex", justifyContent: 'center'}}>

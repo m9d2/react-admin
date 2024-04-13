@@ -63,11 +63,12 @@ export default function ModifyForm(props: {
                 }
             }
 
-
-            (async () => {
-                await fetchMenus()
-            })();
-        }, []
+            if (open) {
+                (async () => {
+                    await fetchMenus()
+                })();
+            }
+        }, [open]
     );
 
     useEffect(() => {

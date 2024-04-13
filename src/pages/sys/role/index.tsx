@@ -17,6 +17,7 @@ const Index: React.FC = () => {
     const [row, setRow] = useState<any>();
     const [action, setAction] = useState("add");
     const {message} = App.useApp();
+    const [editFormVisible, setEditFormVisible] = useState(false);
 
     const getMoreItems = (record: any) => {
         const moreItems: MenuProps["items"] = [
@@ -95,6 +96,7 @@ const Index: React.FC = () => {
             if (response.data) {
                 setData(response.data);
             }
+            setEditFormVisible(true)
             setLoading(false);
         })();
     }, [queryParam]);
@@ -197,13 +199,15 @@ const Index: React.FC = () => {
                     bordered
                 />
             </Card>
-            <EditForm
-                row={row}
-                action={action}
-                open={open}
-                onCancel={() => setOpen(false)}
-                onOk={handleOnOk}
-            />
+            {
+                editFormVisible && <EditForm
+                    row={row}
+                    action={action}
+                    open={open}
+                    onCancel={() => setOpen(false)}
+                    onOk={handleOnOk}
+                />
+            }
         </Space>
     );
 };

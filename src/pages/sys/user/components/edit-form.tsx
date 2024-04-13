@@ -61,10 +61,13 @@ export default function ModifyForm(props: {
                 }
             }
         };
-        (async () => {
-            await fetchRoles()
-        })();
-    }, []);
+        if (open) {
+
+            (async () => {
+                await fetchRoles()
+            })();
+        }
+    }, [open]);
 
     const addFormItems: FormItem[] = [
         {

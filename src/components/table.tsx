@@ -38,6 +38,7 @@ export default function Table(props: {
                 rowSelection={props.rowSelection}
                 columns={props.columns}
                 dataSource={props.data}
+                size="small"
                 loading={props.loading}
                 bordered={props.bordered}
                 scroll={{y: 560, x: true, scrollToFirstRowOnChange: true}}

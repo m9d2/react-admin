@@ -27,6 +27,7 @@ const Index: React.FC = () => {
     const [row, setRow] = useState<any>();
     const [action, setAction] = useState("add");
     const {message, modal} = App.useApp();
+    const [editFormVisible, setEditFormVisible] = useState(false);
 
     const getMoreItems = (record: any) => {
         const moreItems: MenuProps["items"] = [
@@ -128,6 +129,7 @@ const Index: React.FC = () => {
         },
     ];
 
+    // console.log(EditForm)
     useEffect(() => {
         function page() {
             return User.Page(queryParam);
@@ -139,6 +141,7 @@ const Index: React.FC = () => {
             if (response.data) {
                 setData(response.data);
             }
+            setEditFormVisible(true)
             setLoading(false);
         })();
     }, [queryParam]);
@@ -296,13 +299,15 @@ const Index: React.FC = () => {
                     rowSelection={rowSelection}
                 />
             </Card>
-            <EditForm
-                row={row}
-                action={action}
-                open={open}
-                onCancel={() => setOpen(false)}
-                onOk={handleOnOk}
-            />
+            {
+                editFormVisible && <EditForm
+                    row={row}
+                    action={action}
+                    open={open}
+                    onCancel={() => setOpen(false)}
+                    onOk={handleOnOk}
+                />
+            }
         </Space>
     );
 };
