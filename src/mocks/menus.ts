@@ -1,7 +1,8 @@
 import {http, HttpResponse} from 'msw';
+import {Menu} from "@/api";
 
 export const menus = [
-    http.get('/api/menu/tree', () => {
+    http.get(`/api${Menu.Api.MY}`, () => {
         return HttpResponse.json({
             "code": 200,
             "msg": "操作成功",
