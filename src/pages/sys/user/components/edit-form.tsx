@@ -11,7 +11,7 @@ export default function ModifyForm(props: {
     open: boolean | undefined;
     onOk: () => void;
     onCancel: () => void;
-    action?: string | "add" | "modify";
+    action?: string | "add" | "modify" | "resetPassword";
     row?: any;
 }) {
     const {open, onOk, onCancel, action = "add", row} = props;
@@ -29,6 +29,16 @@ export default function ModifyForm(props: {
     };
 
     const modify = async (values: any) => {
+        const resp = await User.Modify(values);
+        if (resp.code === constant.SUCCESS_CODE) {
+            message.success("操作成功");
+            onOk();
+            return true;
+        }
+        return false;
+    };
+
+    const resetPassword = async (values: any) => {
         const resp = await User.Modify(values);
         if (resp.code === constant.SUCCESS_CODE) {
             message.success("操作成功");
@@ -197,6 +207,35 @@ export default function ModifyForm(props: {
         },
     ];
 
+    const resetPasswordFormItems: FormItem[] = [
+        {
+            label: "id",
+            name: "id",
+            child: <Input/>,
+            rules: [{required: true}],
+            hidden: true,
+        },
+        {
+            label: "密码",
+            name: "password",
+            child: <Input type='password'/>,
+            rules: [{required: true}],
+        },
+        {
+            label: "确认密码",
+            name: "confirmPassword",
+            child: <Input type='password'/>,
+            rules: [{required: true}, ({getFieldValue}: { getFieldValue: any }) => ({
+                validator(_: any, value: string) {
+                    if (!value || getFieldValue('password') === value) {
+                        return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('两次输入的密码不一致'));
+                },
+            }),],
+        }
+    ];
+
     if (action === "add") {
         return (
             <Modal open={open} title={"新增用户"} onCancel={onCancel}>
@@ -217,6 +256,19 @@ export default function ModifyForm(props: {
                     items={modifyFormItems}
                     initialValues={row}
                 ></Form>
+            </Modal>
+        );
+    }
+    if (action === "resetPassword") {
+        return (
+            <Modal open={open} title={"重置密码"} onCancel={onCancel}>
+                <Form
+                    onFinish={resetPassword}
+                    onCancel={handleCancel}
+                    items={resetPasswordFormItems}
+                    initialValues={row}
+                >
+                </Form>
             </Modal>
         );
     }

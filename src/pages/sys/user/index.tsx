@@ -31,7 +31,7 @@ const Index: React.FC = () => {
     const getMoreItems = (record: any) => {
         const moreItems: MenuProps["items"] = [
             {
-                label: "修改密码",
+                label: "重置密码",
                 key: "1",
             },
             {
@@ -147,7 +147,7 @@ const Index: React.FC = () => {
         (async () => {
             switch (key) {
                 case "1":
-                    message.success("密码修改成功-id:" + record.id);
+                    resetPassword(record);
                     break;
                 case "2":
                     await User.Modify({id: record.id, status: record.status === 0 ? 1 : 0})
@@ -198,6 +198,12 @@ const Index: React.FC = () => {
         setQueryParam({...queryParam})
     }
 
+    const resetPassword = (record: any) => {
+        setAction('resetPassword')
+        setOpen(true)
+        setRow(record)
+    }
+
     const handleBatchOption = ({key}: { key: string }) => {
         if (key === "1") {
             modal.confirm({
@@ -246,8 +252,8 @@ const Index: React.FC = () => {
     };
 
     return (
-        <>
-            <Card style={{marginBottom: 16}}>
+        <Space direction='vertical' style={{width: '100%'}}>
+            <Card>
                 <Form
                     name="basic"
                     autoComplete="off"
@@ -297,7 +303,7 @@ const Index: React.FC = () => {
                 onCancel={() => setOpen(false)}
                 onOk={handleOnOk}
             />
-        </>
+        </Space>
     );
 };
 

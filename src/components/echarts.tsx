@@ -10,6 +10,7 @@ import {
 } from 'echarts/components';
 import {LabelLayout, UniversalTransition} from 'echarts/features';
 import {CanvasRenderer} from 'echarts/renderers';
+import classNames from 'classnames';
 import {
     BarSeriesOption,
     ComposeOption,
@@ -71,7 +72,7 @@ const EChart = ({option, style, className}: { option: ECOption, style?: CSSPrope
 
     }, [option]);
 
-    return <div ref={chartRef} style={style} className={`charts-box ${className}`}></div>;
+    return <div ref={chartRef} style={{width: '100%', height: '100%', ...style}} className={classNames('charts-box', className)}></div>;
 
 };
 

@@ -33,6 +33,7 @@ const Navigation = () => {
 }
 
 const Index = () => {
+    const year = new Date().getFullYear();
     return (
         <AuthRouter>
             <Layout>
@@ -40,11 +41,11 @@ const Index = () => {
                 <Layout>
                     <Header/>
                     <Content style={{padding: 16, width: '100%', height: '100%', overflow: "auto"}}>
-                            <Outlet/>
+                        <Outlet/>
                     </Content>
                     <Footer style={{padding: 8}}>
                         <div style={{display: "flex", justifyContent: 'center'}}>
-                            <span style={{fontSize: 12}}>© 2024 Copyright</span>
+                            <span style={{fontSize: 12}}>Copyright &copy; {year}</span>
                         </div>
                     </Footer>
                 </Layout>

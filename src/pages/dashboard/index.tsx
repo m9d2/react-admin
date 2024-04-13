@@ -1,5 +1,5 @@
 import {EChart, ECOption} from "@/components/echarts.tsx";
-import {Button, Card, Col, Dropdown, MenuProps, Row, Segmented, Statistic} from "antd";
+import {Button, Card, Col, Dropdown, MenuProps, Row, Segmented, Space, Statistic} from "antd";
 import {CaretDownOutlined, CaretUpOutlined, EllipsisOutlined} from "@ant-design/icons";
 import * as echarts from 'echarts/core';
 import styles from "./index.module.scss";
@@ -177,8 +177,8 @@ const DataCardPanel = () => {
 
     return (
         <>
-            <Row gutter={[24, 24]} wrap>
-                <Col flex="1 1 25%">
+            <Row gutter={[15, 15]}>
+                <Col span={6}>
                     <Card>
                         <div>
                             <span>总销售额</span>
@@ -202,7 +202,7 @@ const DataCardPanel = () => {
                         </div>
                     </Card>
                 </Col>
-                <Col flex="1 1 25%">
+                <Col span={6}>
                     <Card>
                         <div>
                             <span>访问量</span>
@@ -217,7 +217,7 @@ const DataCardPanel = () => {
                         </div>
                     </Card>
                 </Col>
-                <Col flex="1 1 25%">
+                <Col span={6}>
                     <Card>
                         <div>
                             <span>支付笔数</span>
@@ -232,7 +232,7 @@ const DataCardPanel = () => {
                         </div>
                     </Card>
                 </Col>
-                <Col flex="1 1 25%">
+                <Col span={6}>
                     <Card>
                         <div>
                             <span>访问量</span>
@@ -292,20 +292,25 @@ const Dashboard = () => {
     )
     return (
         <>
-            <DataCardPanel/>
-            <Row gutter={24} style={{marginTop: 16}}>
-                <Col span={12}>
-                    <Card title="年销售额" bordered={false} style={{width: '100%'}} extra={extra}>
-                        <EChart option={option} style={{width: '100%', height: '400px'}}/>
-                    </Card>
+            <Space direction='vertical' style={{width: '100%'}}>
+                <DataCardPanel/>
+                <Card title="年销售额" extra={extra}>
+                    <EChart option={option} style={{height: '400px'}}/>
+                </Card>
+                <Row gutter={[15, 15]}>
+                    <Col span={12}>
+                        <Card title="年销售额" extra={extra}>
+                            <EChart option={option} style={{height: '400px'}}/>
+                        </Card>
 
-                </Col>
-                <Col span={12}>
-                    <Card title="推广渠道占比" bordered={false} style={{width: '100%'}} extra={extra}>
-                        <EChart option={option3} style={{width: '100%', height: '400px'}}/>
-                    </Card>
-                </Col>
-            </Row>
+                    </Col>
+                    <Col span={12}>
+                        <Card title="推广渠道占比" extra={extra}>
+                            <EChart option={option3} style={{height: '400px'}}/>
+                        </Card>
+                    </Col>
+                </Row>
+            </Space>
         </>
     )
 }

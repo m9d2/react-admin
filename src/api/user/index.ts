@@ -16,11 +16,11 @@ export async function UserInfo(): Promise<Response<PageData>> {
     return await request.get(Api.USERINFO)
 }
 
-export async function Save(formData: any): Promise<Response<PageData>> {
+export async function Save(formData: any): Promise<Response<any>> {
     return await request.post(Api.SAVE, formData)
 }
 
-export async function Modify(formData: any): Promise<Response<PageData>> {
+export async function Modify(formData: any): Promise<Response<any>> {
     return await request.post(Api.MODIFY + '?id=' + formData.id, formData)
 }
 
