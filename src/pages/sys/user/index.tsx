@@ -223,9 +223,9 @@ const Index: React.FC = () => {
         ];
         return (
             <div className="flex-space">
-                <Space className="table-title">
+                <Space>
                     <Button type="primary" icon={<PlusOutlined/>} onClick={add}>
-                        新增用户
+                        添加
                     </Button>
                     {selectedRowKeys.length > 0 && (
                         <>
@@ -246,8 +246,8 @@ const Index: React.FC = () => {
     };
 
     return (
-        <Space direction='vertical'>
-            <Card>
+        <>
+            <Card style={{marginBottom: 16}}>
                 <Form
                     name="basic"
                     autoComplete="off"
@@ -297,7 +297,7 @@ const Index: React.FC = () => {
                 onCancel={() => setOpen(false)}
                 onOk={handleOnOk}
             />
-        </Space>
+        </>
     );
 };
 

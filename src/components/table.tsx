@@ -31,7 +31,7 @@ export default function Table(props: {
     }
     return (
         <>
-            <div style={{padding: '16px 0'}}>
+            <div style={{paddingBottom: 15}}>
                 {props.title}
             </div>
             <AntTable

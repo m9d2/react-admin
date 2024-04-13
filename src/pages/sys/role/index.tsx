@@ -154,8 +154,8 @@ const Index: React.FC = () => {
     };
 
     return (
-        <Space direction='vertical'>
-            <Card>
+        <>
+            <Card style={{marginBottom: 16}}>
                 <Form
                     name="basic"
                     autoComplete="off"
@@ -204,7 +204,7 @@ const Index: React.FC = () => {
                 onCancel={() => setOpen(false)}
                 onOk={handleOnOk}
             />
-        </Space>
+        </>
     );
 };
 

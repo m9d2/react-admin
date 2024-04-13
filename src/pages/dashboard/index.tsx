@@ -1,5 +1,5 @@
 import {EChart, ECOption} from "@/components/echarts.tsx";
-import {Button, Card, Col, Dropdown, MenuProps, Row, Segmented, Space, Statistic} from "antd";
+import {Button, Card, Col, Dropdown, MenuProps, Row, Segmented, Statistic} from "antd";
 import {CaretDownOutlined, CaretUpOutlined, EllipsisOutlined} from "@ant-design/icons";
 import * as echarts from 'echarts/core';
 import styles from "./index.module.scss";
@@ -176,7 +176,7 @@ const DataCardPanel = () => {
     const valueStyle = {fontSize: '30px', fontWeight: 500}
 
     return (
-        <div className={styles.cardDataPanel}>
+        <>
             <Row gutter={[24, 24]} wrap>
                 <Col flex="1 1 25%">
                     <Card>
@@ -257,7 +257,7 @@ const DataCardPanel = () => {
                     </Card>
                 </Col>
             </Row>
-        </div>
+        </>
     )
 }
 
@@ -291,9 +291,9 @@ const Dashboard = () => {
         </>
     )
     return (
-        <Space direction='vertical' size={28} style={{width: '100%'}}>
+        <>
             <DataCardPanel/>
-            <Row gutter={24}>
+            <Row gutter={24} style={{marginTop: 16}}>
                 <Col span={12}>
                     <Card title="年销售额" bordered={false} style={{width: '100%'}} extra={extra}>
                         <EChart option={option} style={{width: '100%', height: '400px'}}/>
@@ -306,7 +306,7 @@ const Dashboard = () => {
                     </Card>
                 </Col>
             </Row>
-        </Space>
+        </>
     )
 }
 

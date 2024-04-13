@@ -8,7 +8,8 @@ import Header from "@/pages/layout/components/header.tsx";
 import {useSelector} from "react-redux";
 import {DynamicsSvgIcon} from "@/components/svg-icon.tsx";
 
-const {Footer} = Layout
+const {Footer, Content} = Layout
+
 function Logo(props: { collapsed: boolean, style?: CSSProperties }) {
     return (
         <div className={styles.logo} style={props.style}>
@@ -34,16 +35,16 @@ const Navigation = () => {
 const Index = () => {
     return (
         <AuthRouter>
-            <Layout style={{height: '100%', overflow: 'auto'}}>
+            <Layout>
                 <Navigation/>
-                <Layout style={{height: '100%', overflowY: 'auto'}}>
+                <Layout>
                     <Header/>
-                    <div className="container">
-                        <Outlet/>
-                    </div>
+                    <Content style={{padding: 16, width: '100%', height: '100%', overflow: "auto"}}>
+                            <Outlet/>
+                    </Content>
                     <Footer style={{padding: 8}}>
                         <div style={{display: "flex", justifyContent: 'center'}}>
-                            <span style={{color: '#676a64', fontSize: 12}}>© 2024 Copyright</span>
+                            <span style={{fontSize: 12}}>© 2024 Copyright</span>
                         </div>
                     </Footer>
                 </Layout>

@@ -7,6 +7,7 @@ interface QueryParam {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-ignore
 interface Response<T> {
     data?: T | undefined;
     code?: number;
