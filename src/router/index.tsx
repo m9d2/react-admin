@@ -1,6 +1,6 @@
-import {createHashRouter,} from "react-router-dom";
-import {lazy, Suspense} from "react";
-import DashboardSkeleton from "@/pages/dashboard/components/skeleton.tsx"
+import DashboardSkeleton from '@/pages/dashboard/components/skeleton.tsx';
+import { lazy, Suspense } from 'react';
+import { createHashRouter } from 'react-router-dom';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Layout = lazy(() => import('@/pages/layout'));
@@ -17,38 +17,41 @@ const Login = lazy(() => import('@/pages/login'));
 // eslint-disable-next-line react-refresh/only-export-components
 const Log = lazy(() => import('@/pages/sys/log/log'));
 
-
 const router = createHashRouter([
-    {
-        path: "/",
-        element: <Layout/>,
-        children: [
-            {
-                path: "dashboard",
-                element: <Suspense fallback={<DashboardSkeleton/>}><Dashboard/></Suspense>
-            },
-            {
-                path: "sys/user",
-                element: <User/>
-            },
-            {
-                path: "sys/role",
-                element: <Role/>
-            },
-            {
-                path: "sys/menu",
-                element: <Menu/>
-            },
-            {
-                path: "sys/log",
-                element: <Log/>
-            }
-        ]
-    },
-    {
-        path: "/login",
-        element: <Login/>,
-    },
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: 'dashboard',
+        element: (
+          <Suspense fallback={<DashboardSkeleton />}>
+            <Dashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'sys/user',
+        element: <User />,
+      },
+      {
+        path: 'sys/role',
+        element: <Role />,
+      },
+      {
+        path: 'sys/menu',
+        element: <Menu />,
+      },
+      {
+        path: 'sys/log',
+        element: <Log />,
+      },
+    ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
 ]);
 
 export default router;

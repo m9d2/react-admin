@@ -1,14 +1,14 @@
-import {configureStore} from '@reduxjs/toolkit';
+import collapsedSlice from '@/store/modules/collapsed.ts';
 import userReducer from '@/store/modules/user.ts';
-import collapsedSlice from "@/store/modules/collapsed.ts";
+import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
-    reducer: {
-        user: userReducer,
-        collapsed: collapsedSlice,
-    },
+  reducer: {
+    user: userReducer,
+    collapsed: collapsedSlice,
+  },
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-export default store
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export default store;

@@ -1,23 +1,25 @@
-import React, {Suspense} from 'react'
-import ReactDOM from 'react-dom/client'
-import App from "@/App.tsx";
+import App from '@/App.tsx';
+import Loading from '@/components/loading.tsx';
+import { worker } from '@/mocks/browser.ts';
 import '@/styles/global.scss';
-import Loading from "@/components/loading.tsx";
-import {worker} from "@/mocks/browser.ts";
+import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <Suspense fallback={<Loading/>}>
-            <App/>
-        </Suspense>
-    </React.StrictMode>
+  <React.StrictMode>
+    <Suspense fallback={<Loading />}>
+      <App />
+    </Suspense>
+  </React.StrictMode>,
 );
 
 document.addEventListener('DOMContentLoaded', function () {
-    worker.start({
-        serviceWorker: {
-            url: 'mockServiceWorker.js',
-        },
-        onUnhandledRequest: 'bypass',
-    }).then();
+  worker
+    .start({
+      serviceWorker: {
+        url: 'mockServiceWorker.js',
+      },
+      onUnhandledRequest: 'bypass',
+    })
+    .then();
 });
