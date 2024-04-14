@@ -7,13 +7,17 @@ import Form, {FormItem} from "@/components/form.tsx";
 
 const {TextArea} = Input;
 
-export default function ModifyForm(props: {
+export type Action = "add" | "modify" | "resetPassword";
+
+interface Props {
     open: boolean | undefined;
     onOk: () => void;
     onCancel: () => void;
-    action?: string | "add" | "modify" | "resetPassword";
+    action?: Action
     row?: any;
-}) {
+}
+
+export default function ModifyForm(props: Props) {
     const {open, onOk, onCancel, action = "add", row} = props;
     const {message} = App.useApp();
     const [roles, setRoles] = useState<any[]>([]);
@@ -53,19 +57,21 @@ export default function ModifyForm(props: {
     };
 
     useEffect(() => {
-        const fetchRoles = async () => {
-            if (roles.length === 0) {
-                const resp: Response<any[]> = await Role.All();
-                if (resp.data) {
-                    setRoles(resp.data);
+        if (action === "add" || action === 'modify') {
+            const fetchRoles = async () => {
+                if (roles.length === 0) {
+                    const resp: Response<any[]> = await Role.All();
+                    if (resp.data) {
+                        setRoles(resp.data);
+                    }
                 }
-            }
-        };
-        if (open) {
+            };
+            if (open) {
 
-            (async () => {
-                await fetchRoles()
-            })();
+                (async () => {
+                    await fetchRoles()
+                })();
+            }
         }
     }, [open]);
 

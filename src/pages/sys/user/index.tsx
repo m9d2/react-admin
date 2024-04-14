@@ -12,7 +12,7 @@ import {
     SearchOutlined,
 } from "@ant-design/icons";
 import {User} from "@/api";
-import EditForm from "@/pages/sys/user/components/edit-form";
+import EditForm, {Action} from "@/pages/sys/user/components/edit-form";
 import {common} from "@/utils";
 
 const Index: React.FC = () => {
@@ -25,7 +25,7 @@ const Index: React.FC = () => {
     });
     const [open, setOpen] = useState<boolean>(false);
     const [row, setRow] = useState<any>();
-    const [action, setAction] = useState("add");
+    const [action, setAction] = useState<Action>("add");
     const {message, modal} = App.useApp();
     const [editFormVisible, setEditFormVisible] = useState(false);
 
@@ -192,7 +192,7 @@ const Index: React.FC = () => {
 
     const modify = (record: any) => {
         setRow(record);
-        setAction("modify");
+        setAction("modify")
         setOpen(true);
     };
 
