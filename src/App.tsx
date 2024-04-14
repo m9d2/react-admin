@@ -18,6 +18,7 @@ function App() {
             colorLink: primaryColor,
             colorText: "rgba(51, 51, 51, 1)",
             colorBgLayout: '#ecf1f5',
+            paddingXS: 15,
         },
         components: {
             Menu: {

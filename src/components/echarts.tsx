@@ -1,6 +1,6 @@
-import {CSSProperties, useEffect, useRef} from 'react';
+import { CSSProperties, useEffect, useRef } from 'react';
 import * as echarts from 'echarts/core';
-import {BarChart, LineChart, PieChart} from 'echarts/charts';
+import { BarChart, LineChart, PieChart } from 'echarts/charts';
 import {
     DatasetComponent,
     GridComponent,
@@ -8,8 +8,8 @@ import {
     TooltipComponent,
     TransformComponent
 } from 'echarts/components';
-import {LabelLayout, UniversalTransition} from 'echarts/features';
-import {CanvasRenderer} from 'echarts/renderers';
+import { LabelLayout, UniversalTransition } from 'echarts/features';
+import { CanvasRenderer } from 'echarts/renderers';
 import classNames from 'classnames';
 import {
     BarSeriesOption,
@@ -53,27 +53,32 @@ echarts.use([
     CanvasRenderer
 ]);
 
-const EChart = ({option, style, className}: { option: ECOption, style?: CSSProperties, className?: string }) => {
+const EChart = ({ option, style, className }: { option: ECOption, style?: CSSProperties, className?: string }) => {
     const chartRef = useRef(null);
 
     useEffect(() => {
         const chart = echarts.init(chartRef.current);
         chart.setOption(option);
+
         const resizeChart = () => {
             chart.resize();
         };
 
-        window.addEventListener('resize', resizeChart);
+        const resizeObserver = new ResizeObserver(resizeChart);
+
+        if (chartRef.current) {
+            resizeObserver.observe(chartRef.current);
+        }
 
         return () => {
             chart.dispose();
-            window.removeEventListener('resize', resizeChart);
+            resizeObserver.disconnect();
         };
 
     }, [option]);
 
-    return <div ref={chartRef} style={{width: '100%', height: '100%', ...style}} className={classNames('charts-box', className)}></div>;
+    return <div ref={chartRef} style={{ width: '100%', height: '100%', ...style }} className={classNames('charts-box', className)}></div>;
 
 };
 
-export {EChart}
+export { EChart };

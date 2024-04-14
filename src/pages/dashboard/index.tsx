@@ -175,89 +175,93 @@ const DataCardPanel = () => {
 
     const valueStyle = {fontSize: '30px', fontWeight: 500}
 
+    const cards = [
+        <Card>
+            <div className={styles.title}>
+                <span>总销售额</span>
+                <Statistic valueStyle={valueStyle} value={126560} prefix="￥"/>
+            </div>
+            <div className={styles.chart}>
+                <div>
+                    <span>周同比</span>
+                    <span style={{marginLeft: 8}}>12%</span>
+                    <CaretUpOutlined className="red"/>
+                </div>
+                <div>
+                    <span>日同比</span>
+                    <span style={{marginLeft: 8}}>11%</span>
+                    <CaretDownOutlined className="green"/>
+                </div>
+            </div>
+            <div className={styles.footer}>
+                <span>日销售额</span>
+                <span>￥123,54</span>
+            </div>
+        </Card>,
+        <Card>
+            <div className={styles.title}>
+                <span>访问量</span>
+                <Statistic valueStyle={valueStyle} value={8846}/>
+            </div>
+            <div className={styles.chart}>
+                <EChart option={option2}/>
+            </div>
+            <div className={styles.footer}>
+                <span>日访问量</span>
+                <span>1234</span>
+            </div>
+        </Card>,
+        <Card>
+            <div className={styles.title}>
+                <span>支付笔数</span>
+                <Statistic valueStyle={valueStyle} value={8846}/>
+            </div>
+            <div className={styles.chart}>
+                <EChart option={option4}/>
+            </div>
+            <div className={styles.footer}>
+                <span>转化率</span>
+                <span>60%</span>
+            </div>
+        </Card>,
+        <Card>
+            <div className={styles.title}>
+                <span>访问量</span>
+                <Statistic valueStyle={valueStyle} value={8846}/>
+            </div>
+            <div className={styles.chart}>
+                <div>
+                    <span>周同比</span>
+                    <span>12%</span>
+                    <CaretUpOutlined className="red"/>
+                </div>
+                <div>
+                    <span>日同比</span>
+                    <span>11%</span>
+                    <CaretDownOutlined className="green"/>
+                </div>
+            </div>
+            <div className={styles.footer}>
+                <span>日访问量</span>
+                <span>1234</span>
+            </div>
+        </Card>
+    ]
+
     return (
-        <>
-            <Row gutter={[15, 15]}>
-                <Col span={6}>
-                    <Card>
-                        <div>
-                            <span>总销售额</span>
-                            <Statistic valueStyle={valueStyle} value={126560} prefix="￥"/>
-                        </div>
-                        <div className={styles.cardDataChart}>
-                            <div>
-                                <span>周同比</span>
-                                <span style={{marginLeft: 8}}>12%</span>
-                                <CaretUpOutlined className="red"/>
-                            </div>
-                            <div>
-                                <span>日同比</span>
-                                <span style={{marginLeft: 8}}>11%</span>
-                                <CaretDownOutlined className="green"/>
-                            </div>
-                        </div>
-                        <div className={styles.cardDataFooter}>
-                            <span>日销售额</span>
-                            <span>￥123,54</span>
-                        </div>
-                    </Card>
-                </Col>
-                <Col span={6}>
-                    <Card>
-                        <div>
-                            <span>访问量</span>
-                            <Statistic valueStyle={valueStyle} value={8846}/>
-                        </div>
-                        <div className={styles.cardDataChart}>
-                            <EChart option={option2}/>
-                        </div>
-                        <div className={styles.cardDataFooter}>
-                            <span>日访问量</span>
-                            <span>1234</span>
-                        </div>
-                    </Card>
-                </Col>
-                <Col span={6}>
-                    <Card>
-                        <div>
-                            <span>支付笔数</span>
-                            <Statistic valueStyle={valueStyle} value={8846}/>
-                        </div>
-                        <div className={styles.cardDataChart}>
-                            <EChart option={option4}/>
-                        </div>
-                        <div className={styles.cardDataFooter}>
-                            <span>转化率</span>
-                            <span>60%</span>
-                        </div>
-                    </Card>
-                </Col>
-                <Col span={6}>
-                    <Card>
-                        <div>
-                            <span>访问量</span>
-                            <Statistic valueStyle={valueStyle} value={8846}/>
-                        </div>
-                        <div className={styles.cardDataChart}>
-                            <div>
-                                <span>周同比</span>
-                                <span>12%</span>
-                                <CaretUpOutlined className="red"/>
-                            </div>
-                            <div>
-                                <span>日同比</span>
-                                <span>11%</span>
-                                <CaretDownOutlined className="green"/>
-                            </div>
-                        </div>
-                        <div className={styles.cardDataFooter}>
-                            <span>日访问量</span>
-                            <span>1234</span>
-                        </div>
-                    </Card>
-                </Col>
-            </Row>
-        </>
+        <Row gutter={[15, 15]}>
+            {cards.map((card, index) => {
+                const key = `col-${index}`;
+                return (
+                    <Col
+                        key={key}
+                        span={6}
+                    >
+                        {card}
+                    </Col>
+                );
+            })}
+        </Row>
     )
 }
 
@@ -297,7 +301,7 @@ const Dashboard = () => {
                 <Card title="年销售额" extra={extra}>
                     <EChart option={option} style={{height: '400px'}}/>
                 </Card>
-                <Row gutter={[15, 15]}>
+                <Row gutter={[15, 15]} wrap>
                     <Col span={12}>
                         <Card title="年销售额" extra={extra}>
                             <EChart option={option} style={{height: '400px'}}/>
