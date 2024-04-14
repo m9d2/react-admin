@@ -129,7 +129,6 @@ const Index: React.FC = () => {
         },
     ];
 
-    // console.log(EditForm)
     useEffect(() => {
         function page() {
             return User.Page(queryParam);
@@ -155,15 +154,16 @@ const Index: React.FC = () => {
                 case "2":
                     await User.Modify({id: record.id, status: record.status === 0 ? 1 : 0})
                     message.success("禁用成功-id:" + record.id);
+                    setQueryParam({...queryParam})
                     break;
                 case "3":
                     await User.Delete(record.id)
                     message.success("删除成功");
+                    setQueryParam({...queryParam})
                     break;
                 default:
                     break;
             }
-            setQueryParam({...queryParam})
         })()
     };
 
@@ -197,6 +197,7 @@ const Index: React.FC = () => {
     };
 
     const handleOnOk = () => {
+        console.log('handleOnOk')
         setOpen(false)
         setQueryParam({...queryParam})
     }
