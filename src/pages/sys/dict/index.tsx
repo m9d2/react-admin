@@ -1,3 +1,3 @@
 export default function Index() {
-  return <h1>Dict</h1>;
+    return <h1>Dict</h1>;
 }

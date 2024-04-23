@@ -18,40 +18,40 @@ const Login = lazy(() => import('@/pages/login'));
 const Log = lazy(() => import('@/pages/sys/log/log'));
 
 const router = createHashRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      {
-        path: 'dashboard',
-        element: (
-          <Suspense fallback={<DashboardSkeleton />}>
-            <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'sys/user',
-        element: <User />,
-      },
-      {
-        path: 'sys/role',
-        element: <Role />,
-      },
-      {
-        path: 'sys/menu',
-        element: <Menu />,
-      },
-      {
-        path: 'sys/log',
-        element: <Log />,
-      },
-    ],
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
+    {
+        path: '/',
+        element: <Layout />,
+        children: [
+            {
+                path: 'dashboard',
+                element: (
+                    <Suspense fallback={<DashboardSkeleton />}>
+                        <Dashboard />
+                    </Suspense>
+                ),
+            },
+            {
+                path: 'sys/user',
+                element: <User />,
+            },
+            {
+                path: 'sys/role',
+                element: <Role />,
+            },
+            {
+                path: 'sys/menu',
+                element: <Menu />,
+            },
+            {
+                path: 'sys/log',
+                element: <Log />,
+            },
+        ],
+    },
+    {
+        path: '/login',
+        element: <Login />,
+    },
 ]);
 
 export default router;

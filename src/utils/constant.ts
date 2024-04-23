@@ -1,3 +1,3 @@
 export const constant = {
-  SUCCESS_CODE: 200,
+    SUCCESS_CODE: 200,
 };

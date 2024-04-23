@@ -3,14 +3,14 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 export default function AuthRouter({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  const token = auth.getToken();
-  if (token) {
-    return <>{children}</>;
-  } else {
-    return <Navigate to="/login" replace />;
-  }
+    const token = auth.getToken();
+    if (token) {
+        return <>{children}</>;
+    } else {
+        return <Navigate to="/login" replace />;
+    }
 }

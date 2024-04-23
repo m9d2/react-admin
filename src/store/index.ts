@@ -3,10 +3,10 @@ import userReducer from '@/store/modules/user.ts';
 import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
-  reducer: {
-    user: userReducer,
-    collapsed: collapsedSlice,
-  },
+    reducer: {
+        user: userReducer,
+        collapsed: collapsedSlice,
+    },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
