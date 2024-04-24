@@ -33,7 +33,6 @@ const Index: React.FC = () => {
     const [row, setRow] = useState<any>();
     const [action, setAction] = useState('add');
     const { message } = App.useApp();
-    const [editFormVisible, setEditFormVisible] = useState(false);
 
     const getMoreItems = (record: any) => {
         const moreItems: MenuProps['items'] = [
@@ -53,7 +52,7 @@ const Index: React.FC = () => {
         {
             title: '角色ID',
             dataIndex: 'id',
-            width: 80,
+            width: 120,
         },
         {
             title: '角色名称',
@@ -112,7 +111,6 @@ const Index: React.FC = () => {
             if (response.data) {
                 setData(response.data);
             }
-            setEditFormVisible(true);
             setLoading(false);
         })();
     }, [queryParam]);
@@ -210,7 +208,6 @@ const Index: React.FC = () => {
                     </Form.Item>
                 </Form>
             </Card>
-
             <Card>
                 <Table
                     data={data && data.content}
@@ -230,15 +227,13 @@ const Index: React.FC = () => {
                     bordered
                 />
             </Card>
-            {editFormVisible && (
-                <EditForm
-                    row={row}
-                    action={action}
-                    open={open}
-                    onCancel={() => setOpen(false)}
-                    onOk={handleOnOk}
-                />
-            )}
+            <EditForm
+                row={row}
+                action={action}
+                open={open}
+                onCancel={() => setOpen(false)}
+                onOk={handleOnOk}
+            />
         </Space>
     );
 };

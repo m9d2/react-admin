@@ -62,7 +62,7 @@ const Index: React.FC = () => {
         {
             title: '用户ID',
             dataIndex: 'id',
-            width: 80,
+            width: 120,
         },
         {
             title: '登录名称',
@@ -76,6 +76,14 @@ const Index: React.FC = () => {
             ellipsis: true,
         },
         {
+            title: '性别',
+            dataIndex: 'gender',
+            width: 120,
+            render: (value) => {
+                return common.getGender(value);
+            },
+        },
+        {
             title: '手机号',
             dataIndex: 'phone',
             ellipsis: true,
@@ -85,14 +93,6 @@ const Index: React.FC = () => {
             title: '邮箱',
             dataIndex: 'email',
             width: 200,
-        },
-        {
-            title: '性别',
-            dataIndex: 'gender',
-            width: 80,
-            render: (value) => {
-                return common.getGender(value);
-            },
         },
         {
             title: '用户状态',

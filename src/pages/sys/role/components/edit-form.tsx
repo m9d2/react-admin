@@ -18,6 +18,7 @@ export default function ModifyForm(props: {
     const { message } = App.useApp();
     const [menus, setMenus] = useState<any[]>([]);
     const [checkedKeys, setCheckedKeys] = useState<number[]>([]);
+    const [parents, setParents] = useState<any[]>([]);
 
     const save = async (values: any) => {
         values = { ...values, menuIds: checkedKeys };
@@ -31,8 +32,7 @@ export default function ModifyForm(props: {
     };
 
     const modify = async (values: any) => {
-        console.log(checkedKeys);
-        values = { ...values, menuIds: checkedKeys };
+        values = { ...values, menuIds: [...checkedKeys, ...parents] };
         const resp = await Role.Update(values);
         if (resp.code === constant.SUCCESS_CODE) {
             message.success('操作成功');
@@ -47,36 +47,37 @@ export default function ModifyForm(props: {
     };
 
     useEffect(() => {
+        let menus: any[] = [];
         const fetchMenus = async () => {
-            if (menus.length === 0) {
-                const resp: Response<any[]> = await Menu.MyMenus();
-                if (resp.data) {
-                    const data = resp.data.map((menu) => {
-                        return {
-                            title: menu.name,
-                            key: menu.id,
-                            children: menu.child.map((child: any) => {
-                                return { title: child.name, key: child.id };
-                            }),
-                        };
-                    });
-                    setMenus(data);
-                }
+            const resp: Response<any[]> = await Menu.MyMenus();
+            if (resp.data) {
+                menus = resp.data.map((menu) => {
+                    return {
+                        title: menu.name,
+                        key: menu.id,
+                        children: menu.child.map((child: any) => {
+                            return { title: child.name, key: child.id };
+                        }),
+                    };
+                });
+                setMenus(menus);
             }
         };
 
         if (open) {
             (async () => {
                 await fetchMenus();
+                const ids = row.menuIds.filter(
+                    (menuId: any) => !menus.find((menu) => menu.key === menuId),
+                );
+                setCheckedKeys(ids);
             })();
         }
-    }, [open]);
 
-    useEffect(() => {
-        if (row) {
-            setCheckedKeys(row.menuIds || []);
-        }
-    }, [row]);
+        return () => {
+            setParents([]);
+        };
+    }, [open, row]);
 
     const onCheck: TreeProps['onCheck'] = (keys, info) => {
         if (Array.isArray(keys)) {
@@ -84,9 +85,7 @@ export default function ModifyForm(props: {
                 return key;
             });
             if (info.halfCheckedKeys) {
-                info.halfCheckedKeys.forEach((key) => {
-                    data.push(key);
-                });
+                setParents(info.halfCheckedKeys);
             }
             setCheckedKeys(data);
         }
@@ -175,7 +174,7 @@ export default function ModifyForm(props: {
                         selectable={false}
                         checkable
                         onCheck={onCheck}
-                        defaultCheckedKeys={checkedKeys}
+                        checkedKeys={checkedKeys}
                         treeData={menus}
                     />
                 </div>
