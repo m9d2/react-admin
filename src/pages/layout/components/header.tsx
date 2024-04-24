@@ -2,10 +2,22 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import styles from '@/pages/layout/index.module.scss';
 import { toggle } from '@/store/modules/collapsed.ts';
 import { auth } from '@/utils';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Avatar, Button, Dropdown, Layout, MenuProps } from 'antd';
+import {
+    BellOutlined,
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+} from '@ant-design/icons';
+import {
+    Badge,
+    Button,
+    ConfigProvider,
+    Dropdown,
+    Layout,
+    MenuProps,
+} from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { DynamicsSvgIcon } from '@/components/svg-icon.tsx';
 
 export default function Header() {
     const [name, setName] = useState();
@@ -25,8 +37,6 @@ export default function Header() {
             onClick: logout,
         },
     ];
-    const avatar =
-        'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
 
     useEffect(() => {
         const user = auth.getUserInfo();
@@ -36,19 +46,44 @@ export default function Header() {
     }, []);
 
     return (
-        <Header className={styles.header}>
-            <Button
-                type="text"
-                icon={value ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                onClick={() => dispatch(toggle())}
-                style={{ fontSize: '16px', width: '48px', height: '48px' }}
-            />
-            <Dropdown menu={{ items }} placement="bottom" arrow>
-                <Button type="text" className="flex" style={{ height: '48px' }}>
-                    <Avatar size={32} src={avatar} />
-                    <span style={{ marginLeft: '8px' }}>{name}</span>
-                </Button>
-            </Dropdown>
-        </Header>
+        <ConfigProvider
+            theme={{
+                components: {
+                    Button: {
+                        paddingInline: 8,
+                        paddingBlock: 0,
+                    },
+                },
+            }}
+        >
+            <Header className={styles.header}>
+                <div className={styles.headerLeft}>
+                    <Button
+                        type="text"
+                        icon={
+                            value ? (
+                                <MenuUnfoldOutlined />
+                            ) : (
+                                <MenuFoldOutlined />
+                            )
+                        }
+                        onClick={() => dispatch(toggle())}
+                    />
+                </div>
+                <div className={styles.headerRight}>
+                    <Button type="text">
+                        <Badge dot={true}>
+                            <BellOutlined />
+                        </Badge>
+                    </Button>
+                    <Dropdown menu={{ items }}>
+                        <Button type="text">
+                            {name}
+                            <DynamicsSvgIcon iconName="select" />
+                        </Button>
+                    </Dropdown>
+                </div>
+            </Header>
+        </ConfigProvider>
     );
 }

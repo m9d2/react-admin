@@ -16,6 +16,8 @@ const Role = lazy(() => import('@/pages/sys/role'));
 const Login = lazy(() => import('@/pages/login'));
 // eslint-disable-next-line react-refresh/only-export-components
 const Log = lazy(() => import('@/pages/sys/log/log'));
+// eslint-disable-next-line react-refresh/only-export-components
+const NotFound = lazy(() => import('@/components/not-found'));
 
 const router = createHashRouter([
     {
@@ -45,6 +47,10 @@ const router = createHashRouter([
             {
                 path: 'sys/log',
                 element: <Log />,
+            },
+            {
+                path: '*',
+                element: <NotFound />,
             },
         ],
     },

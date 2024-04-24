@@ -169,7 +169,7 @@ const Index: React.FC = () => {
                         icon={<PlusOutlined />}
                         onClick={add}
                     >
-                        新增角色
+                        添加
                     </Button>
                 </Space>
             </div>
