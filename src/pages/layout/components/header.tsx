@@ -4,6 +4,7 @@ import { toggle } from '@/store/modules/collapsed.ts';
 import { auth } from '@/utils';
 import {
     BellOutlined,
+    DownOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
@@ -17,7 +18,6 @@ import {
 } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DynamicsSvgIcon } from '@/components/svg-icon.tsx';
 
 export default function Header() {
     const [name, setName] = useState();
@@ -79,7 +79,7 @@ export default function Header() {
                     <Dropdown menu={{ items }}>
                         <Button type="text">
                             {name}
-                            <DynamicsSvgIcon iconName="select" />
+                            <DownOutlined />
                         </Button>
                     </Dropdown>
                 </div>
