@@ -14,6 +14,7 @@ import {
 import type { MenuProps, TableProps } from 'antd';
 import {
     App,
+    Badge,
     Button,
     Card,
     Divider,
@@ -22,7 +23,6 @@ import {
     FormProps,
     Input,
     Space,
-    Tag,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 
@@ -99,9 +99,9 @@ const Index: React.FC = () => {
             dataIndex: 'status',
             render: (value) => {
                 return value === 0 ? (
-                    <Tag color="processing">启用</Tag>
+                    <Badge status="processing" text="启用" />
                 ) : (
-                    <Tag color="error">禁用</Tag>
+                    <Badge status="default" text="禁用" />
                 );
             },
             width: 100,
@@ -326,7 +326,6 @@ const Index: React.FC = () => {
                     }
                     current={data && data.number + 1}
                     rowKey={(record) => record.id}
-                    bordered
                     rowSelection={rowSelection}
                 />
             </Card>

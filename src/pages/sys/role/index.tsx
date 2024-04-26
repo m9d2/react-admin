@@ -224,7 +224,6 @@ const Index: React.FC = () => {
                     }
                     current={data && data.number + 1}
                     rowKey={(record) => record.id}
-                    bordered
                 />
             </Card>
             <EditForm

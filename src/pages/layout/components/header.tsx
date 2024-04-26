@@ -7,9 +7,12 @@ import {
     DownOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
+    MessageOutlined,
+    ExpandOutlined,
+    CompressOutlined,
 } from '@ant-design/icons';
 import {
-    Avatar,
+    App,
     Badge,
     Button,
     ConfigProvider,
@@ -18,9 +21,39 @@ import {
     List,
     MenuProps,
     Popover,
+    theme,
 } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+const { useToken } = theme;
+const messages = [
+    {
+        title: '消息1',
+        message: '这个是测试消1',
+        hasRead: false,
+    },
+    {
+        title: '消息2',
+        message: '这个是测试消2',
+        hasRead: false,
+    },
+    {
+        title: '消息3',
+        message: '这个是测试消3',
+        hasRead: false,
+    },
+    {
+        title: '消息4',
+        message: '这个是测试消4',
+        hasRead: false,
+    },
+    {
+        title: '消息5',
+        message: '这个是测试消5',
+        hasRead: false,
+    },
+];
 
 export default function Header() {
     const [name, setName] = useState();
@@ -28,10 +61,22 @@ export default function Header() {
     const value = useAppSelector((state) => state.collapsed.value);
     const dispatch = useAppDispatch();
     const { Header } = Layout;
+    const { token } = useToken();
+    const [showDot, setShowDot] = useState(false);
+    const { modal } = App.useApp();
+    const [fullScreen, setFullScreen] = useState(false);
 
     const logout = () => {
-        auth.clearUserInfo();
-        navigate('/login');
+        modal.confirm({
+            title: '提示',
+            content: '此操作将退出登录, 是否继续?',
+            okText: '确定',
+            cancelText: '取消',
+            onOk: () => {
+                auth.clearUserInfo();
+                navigate('/login');
+            },
+        });
     };
     const items: MenuProps['items'] = [
         {
@@ -46,41 +91,61 @@ export default function Header() {
         if (user) {
             setName(user.name);
         }
+        messages.forEach((item) => {
+            if (!item.hasRead) {
+                setShowDot(true);
+                return;
+            }
+        });
     }, []);
 
-    const data = [
-        {
-            title: 'Ant Design Title 1',
-        },
-        {
-            title: 'Ant Design Title 2',
-        },
-        {
-            title: 'Ant Design Title 3',
-        },
-        {
-            title: 'Ant Design Title 4',
-        },
-    ];
+    const readMessage = (message: any) => {
+        message.hasRead = true;
+    };
+
+    const isFullScreen = () => {
+        return document.fullscreenElement;
+    };
+
+    const toggleFullScreen = () => {
+        const element = document.documentElement;
+        if (isFullScreen()) {
+            document.exitFullscreen().then(() => {
+                setFullScreen(false);
+            });
+        } else {
+            element.requestFullscreen().then(() => {
+                setFullScreen(true);
+            });
+        }
+    };
 
     const NoticeContent = (
-        <List
-            itemLayout="horizontal"
-            dataSource={data}
-            renderItem={(item, index) => (
-                <List.Item>
-                    <List.Item.Meta
-                        avatar={
-                            <Avatar
-                                src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
-                            />
-                        }
-                        title={<a href="https://ant.design">{item.title}</a>}
-                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                    />
-                </List.Item>
-            )}
-        />
+        <div>
+            <List
+                itemLayout="horizontal"
+                dataSource={messages}
+                renderItem={(item) => (
+                    <List.Item>
+                        <List.Item.Meta
+                            avatar={
+                                <Badge dot={!item.hasRead}>
+                                    <MessageOutlined
+                                        style={{ color: token.colorPrimary }}
+                                    />
+                                </Badge>
+                            }
+                            title={
+                                <a onClick={() => readMessage(item)}>
+                                    item.title
+                                </a>
+                            }
+                            description={item.message}
+                        />
+                    </List.Item>
+                )}
+            />
+        </div>
     );
 
     return (
@@ -116,12 +181,23 @@ export default function Header() {
                         content={NoticeContent}
                         trigger="click"
                     >
-                        <Button type="text">
-                            <Badge dot={true}>
-                                <BellOutlined />
+                        <Button className="scale-animated-wrapper" type="text">
+                            <Badge dot={showDot}>
+                                <BellOutlined className="scale-animated" />
                             </Badge>
                         </Button>
                     </Popover>
+                    <Button
+                        className="scale-animated-wrapper"
+                        type="text"
+                        onClick={toggleFullScreen}
+                    >
+                        {fullScreen ? (
+                            <CompressOutlined className="scale-animated" />
+                        ) : (
+                            <ExpandOutlined className="scale-animated" />
+                        )}
+                    </Button>
                     <Dropdown menu={{ items }}>
                         <Button type="text">
                             {name}

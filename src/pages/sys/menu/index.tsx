@@ -252,7 +252,6 @@ const Index: React.FC = () => {
                     loading={loading}
                     pagination={false}
                     rowKey={(record) => record.id}
-                    bordered
                 />
             </Card>
             {editFormVisible && (
