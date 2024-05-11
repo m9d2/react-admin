@@ -1,10 +1,9 @@
-import Loading from '@/components/loading.tsx';
 import { DynamicsSvgIcon } from '@/components/svg-icon.tsx';
 import AuthRouter from '@/pages/layout/components/auth-router.tsx';
 import Header from '@/pages/layout/components/header.tsx';
 import Menus from '@/pages/layout/components/menus.tsx';
 import { Layout } from 'antd';
-import { CSSProperties, Suspense } from 'react';
+import { CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import styles from './index.module.scss';
@@ -56,9 +55,7 @@ const Index = () => {
                             overflow: 'auto',
                         }}
                     >
-                        <Suspense fallback={<Loading />}>
-                            <Outlet />
-                        </Suspense>
+                        <Outlet />
                     </Content>
                     <Footer style={{ padding: 8 }}>
                         <div

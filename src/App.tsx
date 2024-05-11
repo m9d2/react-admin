@@ -1,9 +1,15 @@
-import router from '@/router';
 import store from '@/store';
 import { App as AntdApp, ConfigProvider, theme, ThemeConfig } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    RouterProvider,
+} from 'react-router-dom';
+import Root from '@/router';
+
+const router = createBrowserRouter(createRoutesFromElements(Root));
 
 function App() {
     const primaryColor = 'rgba(0, 96, 183, 1)';
