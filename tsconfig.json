@@ -1,42 +1,42 @@
 {
-  /* 编译选项 */
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    //将每个文件视为单独的模块,
-    "isolatedModules": true,
-    //不生成输出文件，仅进行类型检查,
-    "noEmit": true,
-    //指定 JSX 语法为 react-jsx,
-    "jsx": "react-jsx",
-    /* Linting */
-    //启用所有严格类型检查选项,
-    "strict": true,
-    //禁止未使用的局部变量,
-    "noUnusedLocals": true,
-    // 禁止隐式any类型
-    "noImplicitAny": true,
-    //noUnusedParameters,
-    "noUnusedParameters": true,
-    //禁止在 switch 语句中出现不可达代码,
-    "noFallthroughCasesInSwitch": true,
-    //设置基础路径为当前目录,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src", "./typings.d.ts"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+    /* 编译选项 */
+    "compilerOptions": {
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "skipLibCheck": true,
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        //将每个文件视为单独的模块,
+        "isolatedModules": true,
+        //不生成输出文件，仅进行类型检查,
+        "noEmit": true,
+        //指定 JSX 语法为 react-jsx,
+        "jsx": "react-jsx",
+        /* Linting */
+        //启用所有严格类型检查选项,
+        "strict": true,
+        //禁止未使用的局部变量,
+        "noUnusedLocals": true,
+        // 禁止隐式any类型
+        "noImplicitAny": true,
+        //noUnusedParameters,
+        "noUnusedParameters": true,
+        //禁止在 switch 语句中出现不可达代码,
+        "noFallthroughCasesInSwitch": true,
+        //设置基础路径为当前目录,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"]
+        }
+    },
+    "include": ["src", "./typings.d.ts"],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ]
 }
