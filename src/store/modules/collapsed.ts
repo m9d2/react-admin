@@ -2,21 +2,21 @@ import { RootState } from '@/store';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface CollapsedState {
-    value: boolean;
+  value: boolean;
 }
 
 const initialState: CollapsedState = {
-    value: false,
+  value: false,
 };
 
 export const collapsedSlice = createSlice({
-    name: 'collapsed',
-    initialState: initialState,
-    reducers: {
-        toggle: (state) => {
-            state.value = !state.value;
-        },
+  name: 'collapsed',
+  initialState: initialState,
+  reducers: {
+    toggle: (state) => {
+      state.value = !state.value;
     },
+  },
 });
 
 export const { toggle } = collapsedSlice.actions;

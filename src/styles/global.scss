@@ -1,119 +1,119 @@
 @mixin light {
-    --red: red;
-    --green: green;
-    --theme: light;
-    --white: #ffffff;
-    --primary-color: #0060b7;
-    --font-color: rgba(0, 0, 0, 0.88);
-    --color-bg-bar: #f0f0f0;
-    --content-bg: #fff;
-    --color-bg-header: rgb(249, 249, 249);
-    --color-bg-btn: rgba(0, 0, 0, 0.06);
-    --color-border: rgba(5, 5, 5, 0.06);
+  --red: red;
+  --green: green;
+  --theme: light;
+  --white: #ffffff;
+  --primary-color: #0060b7;
+  --font-color: rgba(0, 0, 0, 0.88);
+  --color-bg-bar: #f0f0f0;
+  --content-bg: #fff;
+  --color-bg-header: rgb(249, 249, 249);
+  --color-bg-btn: rgba(0, 0, 0, 0.06);
+  --color-border: rgba(5, 5, 5, 0.06);
 }
 
 @mixin dark {
-    --theme: dark;
-    --white: #ffffff;
-    --primary-color: #0060b7;
-    --color-bg-bar: 001529;
-    --content-bg: #1a1a1a;
-    --font-color: rgba(0, 0, 0, 0.88);
-    --color-bg-btn: rgba(0, 0, 0, 0.06);
-    --color-border: rgba(5, 5, 5, 0.06);
+  --theme: dark;
+  --white: #ffffff;
+  --primary-color: #0060b7;
+  --color-bg-bar: 001529;
+  --content-bg: #1a1a1a;
+  --font-color: rgba(0, 0, 0, 0.88);
+  --color-bg-btn: rgba(0, 0, 0, 0.06);
+  --color-border: rgba(5, 5, 5, 0.06);
 }
 
 :root {
-    @include light;
+  @include light;
 }
 
 .light {
-    @include light;
+  @include light;
 }
 
 .dark {
-    @include dark;
+  @include dark;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        @include dark;
-    }
+  :root {
+    @include dark;
+  }
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #root {
-    height: 100%;
+  height: 100%;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .flex {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .flex-space {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .red {
-    color: var(--red);
+  color: var(--red);
 }
 
 .green {
-    color: var(--green);
+  color: var(--green);
 }
 
 .flex-end {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .role-tree {
-    border: 1px solid #d9d9d9;
-    overflow: auto;
-    padding: 8px;
+  border: 1px solid #d9d9d9;
+  overflow: auto;
+  padding: 8px;
 }
 
 .border-top {
-    border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
 .border-bottom {
-    border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .ant-layout {
-    height: 100%;
+  height: 100%;
 }
 
 @keyframes scaleAnimation {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .scale-animated-wrapper:hover .scale-animated {
-    animation: scaleAnimation 0.5s forwards;
+  animation: scaleAnimation 0.5s forwards;
 }

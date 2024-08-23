@@ -1,76 +1,76 @@
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    //padding: 16px;
-    padding: 0 16px;
-    height: 56px;
-    width: 100%;
-    line-height: 56px;
-    background-color: var(--ant-color-bg-container);
-    border-block-end: 1px solid rgba(5, 5, 5, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //padding: 16px;
+  padding: 0 16px;
+  height: 56px;
+  width: 100%;
+  line-height: 56px;
+  background-color: var(--ant-color-bg-container);
+  border-block-end: 1px solid rgba(5, 5, 5, 0.06);
 }
 
 .headerRight {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .headerLeft {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .right {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
 }
 
 .logo {
-    height: 40px;
+  height: 40px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin: 4px;
+  padding: 0 24px;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+
+  a {
     color: #fff;
     display: flex;
     align-items: center;
-    margin: 4px;
-    padding: 0 24px;
-    font-size: 16px;
-    white-space: nowrap;
-    overflow: hidden;
+  }
 
-    a {
-        color: #fff;
-        display: flex;
-        align-items: center;
-    }
+  a:hover {
+    color: #fff;
+  }
 
-    a:hover {
-        color: #fff;
-    }
-
-    .logoText {
-        margin-left: 8px;
-    }
+  .logoText {
+    margin-left: 8px;
+  }
 }
 
 .navigation {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: auto;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+  height: 100vh;
 }
 
 .collapsed {
-    width: 100%;
-    text-align: center;
-    color: #ffffffa6;
+  width: 100%;
+  text-align: center;
+  color: #ffffffa6;
 }
 
 .collapsedBtn {
-    color: #ffffffa6;
+  color: #ffffffa6;
 }

@@ -13,66 +13,66 @@ const Log = React.lazy(() => import('@/pages/sys/log/log'));
 const NotFound = React.lazy(() => import('@/components/not-found'));
 
 const Root = (
-    <Route>
-        <Route path="/" element={<Layout />}>
-            <Route
-                path="/dashboard"
-                element={
-                    <Suspense fallback={<DashboardSkeleton />}>
-                        <Dashboard />
-                    </Suspense>
-                }
-            />
-            <Route
-                path="sys/user"
-                element={
-                    <Suspense fallback={<Loading />}>
-                        <User />
-                    </Suspense>
-                }
-            />
-            <Route
-                path="sys/role"
-                element={
-                    <Suspense fallback={<Loading />}>
-                        <Role />
-                    </Suspense>
-                }
-            />
-            <Route
-                path="sys/menu"
-                element={
-                    <Suspense fallback={<Loading />}>
-                        <Menu />
-                    </Suspense>
-                }
-            />
-            <Route
-                path="sys/log"
-                element={
-                    <Suspense fallback={<Loading />}>
-                        <Log />
-                    </Suspense>
-                }
-            />
-            <Route
-                path="*"
-                element={
-                    <Suspense fallback={<Loading />}>
-                        <NotFound />
-                    </Suspense>
-                }
-            />
-        </Route>
-        <Route
-            path="/login"
-            element={
-                <Suspense fallback={<Loading />}>
-                    <Login />
-                </Suspense>
-            }
-        />
+  <Route>
+    <Route path="/" element={<Layout />}>
+      <Route
+        path="/dashboard"
+        element={
+          <Suspense fallback={<DashboardSkeleton />}>
+            <Dashboard />
+          </Suspense>
+        }
+      />
+      <Route
+        path="sys/user"
+        element={
+          <Suspense fallback={<Loading />}>
+            <User />
+          </Suspense>
+        }
+      />
+      <Route
+        path="sys/role"
+        element={
+          <Suspense fallback={<Loading />}>
+            <Role />
+          </Suspense>
+        }
+      />
+      <Route
+        path="sys/menu"
+        element={
+          <Suspense fallback={<Loading />}>
+            <Menu />
+          </Suspense>
+        }
+      />
+      <Route
+        path="sys/log"
+        element={
+          <Suspense fallback={<Loading />}>
+            <Log />
+          </Suspense>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<Loading />}>
+            <NotFound />
+          </Suspense>
+        }
+      />
     </Route>
+    <Route
+      path="/login"
+      element={
+        <Suspense fallback={<Loading />}>
+          <Login />
+        </Suspense>
+      }
+    />
+  </Route>
 );
 
 export default Root;
