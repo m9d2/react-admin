@@ -48,6 +48,10 @@ request.interceptors.response.use(
             message.error('请求超时');
             return;
         }
+        if (error.code === 'ERR_NETWORK') {
+            message.error('网络错误');
+            return;
+        }
         return Promise.reject(error);
     },
 );

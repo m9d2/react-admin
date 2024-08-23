@@ -49,16 +49,20 @@ export default function Page() {
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
         setLoading(true);
-        const msg = await dispatch(login(values));
-        setTimeout(() => {
-            if (msg) {
-                setTextMessage(msg);
-            } else {
-                message.success('登录成功');
-                navigate(import.meta.env.VITE_APP_HOMEPAGE);
-            }
+        try {
+            const msg = await dispatch(login(values));
+            setTimeout(() => {
+                if (msg) {
+                    setTextMessage(msg);
+                } else {
+                    message.success('登录成功');
+                    navigate(import.meta.env.VITE_APP_HOMEPAGE);
+                }
+                setLoading(false);
+            }, 200);
+        } catch (e) {
             setLoading(false);
-        }, 200);
+        }
     };
 
     const passwordOnFocus = () => {

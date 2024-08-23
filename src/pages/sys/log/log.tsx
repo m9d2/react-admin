@@ -1,5 +1,11 @@
+import { Card, Space } from 'antd';
+
 const Log = () => {
-    return <h1>log</h1>;
+    return (
+        <Space direction="vertical" style={{ width: '100%' }}>
+            <Card></Card>
+        </Space>
+    );
 };
 
 export default Log;
