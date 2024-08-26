@@ -1,5 +1,5 @@
 import App from '@/App.tsx';
-import Loading from '@/components/loading.tsx';
+import Loading from '@/components/loading/loading.tsx';
 import { worker } from '@/mocks/browser.ts';
 import '@/styles/global.scss';
 import React, { Suspense } from 'react';

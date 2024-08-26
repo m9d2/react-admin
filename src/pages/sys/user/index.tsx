@@ -1,6 +1,6 @@
 import { User } from '@/api';
-import Table from '@/components/table';
-import EditForm, { Action } from '@/pages/sys/user/components/edit-form';
+import { Table } from '@/components';
+import EditForm, { Action } from './components/edit-form';
 import { common } from '@/utils';
 import {
   DeleteOutlined,

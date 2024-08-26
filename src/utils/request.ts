@@ -45,11 +45,15 @@ request.interceptors.response.use(
       return;
     }
     if (error.code === 'ECONNABORTED') {
-      message.error('请求超时');
+      message.error('请求超时').then((r) => {
+        console.error(r);
+      });
       return;
     }
     if (error.code === 'ERR_NETWORK') {
-      message.error('网络错误');
+      message.error('网络错误').then((r) => {
+        console.error(r);
+      });
       return;
     }
     return Promise.reject(error);

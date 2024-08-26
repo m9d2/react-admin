@@ -1,5 +1,5 @@
 import { Card, Space } from 'antd';
-import Button from '@/components/button';
+import { Button } from '@/components';
 
 const Log = () => {
   return (

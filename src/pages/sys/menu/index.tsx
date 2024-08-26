@@ -1,6 +1,6 @@
 import { Menu } from '@/api';
-import Table from '@/components/table';
-import EditForm from '@/pages/sys/menu/components/edit-form';
+import { DynamicsIconSvg, Table } from '@/components';
+import EditForm from './components/edit-form';
 import {
   DownOutlined,
   EditOutlined,
@@ -22,7 +22,6 @@ import {
   Tag,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { DynamicsSvgIcon } from '@/components/svg-icon.tsx';
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -81,7 +80,7 @@ const Index: React.FC = () => {
       ellipsis: true,
       width: 120,
       render: (_, record) => {
-        return <DynamicsSvgIcon iconName={record.icon} />;
+        return <DynamicsIconSvg iconName={record.icon} />;
       },
     },
     {

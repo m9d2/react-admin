@@ -1,5 +1,5 @@
 import { Menu as MenuApi } from '@/api';
-import { DynamicsSvgIcon } from '@/components/svg-icon.tsx';
+import { DynamicsIconSvg } from '@/components';
 import { Menu, MenuProps } from 'antd';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ export default function Menus(props: { collapsed: boolean }) {
       return {
         key: item.url,
         label: item.name,
-        icon: item.icon ? <DynamicsSvgIcon iconName={item.icon} /> : null,
+        icon: item.icon ? <DynamicsIconSvg iconName={item.icon} /> : null,
         onClick: item.type === 'MENU' ? () => ({}) : () => ({}),
         children:
           item.type === 'DIRECTORY' &&
@@ -31,7 +31,7 @@ export default function Menus(props: { collapsed: boolean }) {
               label: child.name,
               path: child.url,
               icon: child.icon ? (
-                <DynamicsSvgIcon iconName={child.icon} />
+                <DynamicsIconSvg iconName={child.icon} />
               ) : null,
             };
           }),

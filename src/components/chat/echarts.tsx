@@ -22,7 +22,7 @@ import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 import { CSSProperties, useEffect, useRef } from 'react';
 
-export type ECOption = ComposeOption<
+export type ComponentOption = ComposeOption<
   | BarSeriesOption
   | LineSeriesOption
   | PieSeriesOption
@@ -49,12 +49,12 @@ echarts.use([
   CanvasRenderer,
 ]);
 
-const EChart = ({
+const Chart = ({
   option,
   style,
   className,
 }: {
-  option: ECOption;
+  option: ComponentOption;
   style?: CSSProperties;
   className?: string;
 }) => {
@@ -89,4 +89,4 @@ const EChart = ({
   );
 };
 
-export { EChart };
+export default Chart;

@@ -1,6 +1,6 @@
+import React, { ReactElement, useEffect, useState } from 'react';
 import Icon from '@ant-design/icons';
 import { GetProps } from 'antd';
-import React, { ReactElement, useEffect, useState } from 'react';
 
 type IconComponentProps = GetProps<typeof Icon> & { iconName: string } & {
   component:
@@ -9,11 +9,7 @@ type IconComponentProps = GetProps<typeof Icon> & { iconName: string } & {
     | undefined;
 };
 
-const SvgIcon = (props: Partial<IconComponentProps>) => (
-  <Icon component={props.component}></Icon>
-);
-
-const DynamicsSvgIcon = ({
+const DynamicsIconSvg = ({
   iconName,
   ...restProps
 }: Partial<IconComponentProps>) => {
@@ -21,7 +17,9 @@ const DynamicsSvgIcon = ({
 
   useEffect(() => {
     const loadIconComponent = async () => {
-      const { default: DynamicIcon } = await import(`../icons/${iconName}.tsx`);
+      const { default: DynamicIcon } = await import(
+        `../../icons/${iconName}.tsx`
+      );
       setIconComponent(<Icon component={DynamicIcon} {...restProps} />);
     };
 
@@ -33,4 +31,4 @@ const DynamicsSvgIcon = ({
   return iconComponent;
 };
 
-export { DynamicsSvgIcon, SvgIcon };
+export default DynamicsIconSvg;

@@ -1,4 +1,4 @@
-import { DynamicsSvgIcon } from '@/components/svg-icon.tsx';
+import { DynamicsIconSvg } from '@/components';
 import AuthRouter from '@/pages/layout/components/auth-router.tsx';
 import Header from '@/pages/layout/components/header.tsx';
 import Menus from '@/pages/layout/components/menus.tsx';
@@ -14,7 +14,7 @@ function Logo(props: { collapsed: boolean; style?: CSSProperties }) {
   return (
     <div className={styles.logo} style={props.style}>
       <a>
-        <DynamicsSvgIcon iconName="logo" />
+        <DynamicsIconSvg iconName="logo" />
         {!props.collapsed && <div className={styles.logoText}>管理系统</div>}
       </a>
     </div>

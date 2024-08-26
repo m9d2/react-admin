@@ -1,6 +1,6 @@
 import { Role, User } from '@/api';
-import Table from '@/components/table';
-import EditForm from '@/pages/sys/role/components/edit-form';
+import { Table } from '@/components';
+import EditForm from './components/edit-form';
 import {
   DownOutlined,
   EditOutlined,

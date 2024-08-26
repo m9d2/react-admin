@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Route } from 'react-router-dom';
-import Loading from '@/components/loading.tsx';
+import Loading from '@/components/loading/loading.tsx';
 import DashboardSkeleton from '@/pages/dashboard/components/skeleton.tsx';
 
 const Layout = React.lazy(() => import('@/pages/layout'));
@@ -10,7 +10,9 @@ const Menu = React.lazy(() => import('@/pages/sys/menu'));
 const Role = React.lazy(() => import('@/pages/sys/role'));
 const Login = React.lazy(() => import('@/pages/login'));
 const Log = React.lazy(() => import('@/pages/sys/log/log'));
-const NotFound = React.lazy(() => import('@/components/not-found'));
+const NotFound = React.lazy(
+  () => import('@/pages/layout/components/not-found.tsx'),
+);
 
 const Root = (
   <Route>

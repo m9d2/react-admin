@@ -1,6 +1,5 @@
 import { Role } from '@/api';
-import Form, { FormItem } from '@/components/form.tsx';
-import Modal from '@/components/modal.tsx';
+import { Form, FormItem, Modal } from '@/components';
 import { constant } from '@/utils';
 import { App, Input, Select, Tree } from 'antd';
 import { useEffect } from 'react';

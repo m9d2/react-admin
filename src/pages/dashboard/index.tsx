@@ -1,4 +1,4 @@
-import { EChart, ECOption } from '@/components/echarts.tsx';
+import { Chart, ComponentOption } from '@/components';
 import {
   CaretDownOutlined,
   CaretUpOutlined,
@@ -19,7 +19,7 @@ import * as echarts from 'echarts/core';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 
-const option: ECOption = {
+const option: ComponentOption = {
   resize: true,
   tooltip: {
     trigger: 'axis',
@@ -64,7 +64,7 @@ const option: ECOption = {
   color: ['#1677ff'],
 };
 
-const option2: ECOption = {
+const option2: ComponentOption = {
   color: ['#c6a6f1'],
   tooltip: {
     trigger: 'axis',
@@ -136,7 +136,7 @@ const option2: ECOption = {
   ],
 };
 
-const option3: ECOption = {
+const option3: ComponentOption = {
   title: {
     left: 'center',
   },
@@ -166,7 +166,7 @@ const option3: ECOption = {
   ],
 };
 
-const option4: ECOption = {
+const option4: ComponentOption = {
   resize: true,
   tooltip: {
     trigger: 'axis',
@@ -246,7 +246,7 @@ const DataCardPanel = () => {
         <Statistic valueStyle={valueStyle} value={8846} />
       </div>
       <div className={styles.chart}>
-        <EChart option={option2} />
+        <Chart option={option2} />
       </div>
       <div className={styles.footer}>
         <span>日访问量</span>
@@ -259,7 +259,7 @@ const DataCardPanel = () => {
         <Statistic valueStyle={valueStyle} value={8846} />
       </div>
       <div className={styles.chart}>
-        <EChart option={option4} />
+        <Chart option={option4} />
       </div>
       <div className={styles.footer}>
         <span>转化率</span>
@@ -340,17 +340,17 @@ const Dashboard = () => {
       <Space direction="vertical" style={{ width: '100%' }}>
         <DataCardPanel />
         <Card title="年销售额" extra={extra}>
-          <EChart option={option} style={{ height: '400px' }} />
+          <Chart option={option} style={{ height: '400px' }} />
         </Card>
         <Row gutter={[15, 15]} wrap>
           <Col span={12}>
             <Card title="年销售额" extra={extra}>
-              <EChart option={option} style={{ height: '400px' }} />
+              <Chart option={option} style={{ height: '400px' }} />
             </Card>
           </Col>
           <Col span={12}>
             <Card title="推广渠道占比" extra={extra}>
-              <EChart option={option3} style={{ height: '400px' }} />
+              <Chart option={option3} style={{ height: '400px' }} />
             </Card>
           </Col>
         </Row>
