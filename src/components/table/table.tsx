@@ -4,11 +4,14 @@ import {
   TablePaginationConfig,
   TableProps,
 } from 'antd';
-import { GetRowKey, TableRowSelection } from 'antd/es/table/interface';
+import {
+  ExpandableConfig,
+  GetRowKey,
+  TableRowSelection,
+} from 'antd/es/table/interface';
 import React from 'react';
-import { ExpandableConfig } from 'antd/es/table/interface';
 
-export default function Table(props: {
+interface Props {
   title?: React.ReactElement | undefined;
   data: any[] | undefined;
   columns: TableProps['columns'];
@@ -21,35 +24,49 @@ export default function Table(props: {
   bordered?: boolean | undefined;
   pagination?: boolean;
   expandable?: ExpandableConfig<any> | undefined;
-}) {
-  const showTotal: PaginationProps['showTotal'] = () =>
-    `共 ${props.total} 条数据`;
+}
+
+export default function Table({
+  title,
+  data,
+  columns,
+  loading,
+  total,
+  rowSelection,
+  current,
+  onChange,
+  rowKey,
+  bordered,
+  pagination = true,
+  expandable,
+}: Props) {
+  const showTotal: PaginationProps['showTotal'] = () => `共 ${total} 条数据`;
   const paginationConfig: TablePaginationConfig = {
     position: ['bottomRight'],
     size: 'small',
     showQuickJumper: true,
     showTotal: showTotal,
-    total: props.total,
-    current: props.current,
-    onChange: props.onChange,
+    total: total,
+    current: current,
+    onChange: onChange,
     pageSizeOptions: ['10', '20', '50', '100'],
     defaultPageSize: 10,
     showSizeChanger: true,
   };
   return (
     <>
-      <div style={{ paddingBottom: 15 }}>{props.title}</div>
+      <div style={{ paddingBottom: 15 }}>{title}</div>
       <AntTable
-        rowSelection={props.rowSelection}
-        columns={props.columns}
-        dataSource={props.data}
+        rowSelection={rowSelection}
+        columns={columns}
+        dataSource={data}
         size="small"
-        loading={props.loading}
-        bordered={props.bordered}
+        loading={loading}
+        bordered={bordered}
         scroll={{ y: 560, x: true, scrollToFirstRowOnChange: true }}
-        pagination={props.pagination && paginationConfig}
-        rowKey={props.rowKey}
-        expandable={props.expandable}
+        pagination={pagination && paginationConfig}
+        rowKey={rowKey}
+        expandable={expandable}
       />
     </>
   );

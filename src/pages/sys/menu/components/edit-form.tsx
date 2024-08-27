@@ -96,7 +96,7 @@ export default function ModifyForm(props: {
       label: 'Icon',
       name: 'icon',
       child: <Input placeholder="请输入Icon" />,
-      rules: [{ required: true }],
+      rules: [{ required: false }],
     },
     {
       label: '排序',
@@ -145,7 +145,7 @@ export default function ModifyForm(props: {
       label: 'Icon',
       name: 'icon',
       child: <Input placeholder="请输入Icon" />,
-      rules: [{ required: true }],
+      rules: [{ required: false }],
     },
     {
       label: '排序',

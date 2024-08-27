@@ -80,7 +80,9 @@ const Index: React.FC = () => {
       ellipsis: true,
       width: 120,
       render: (_, record) => {
-        return <DynamicsIconSvg iconName={record.icon} />;
+        if (record.icon) {
+          return <DynamicsIconSvg iconName={record.icon} />;
+        }
       },
     },
     {
