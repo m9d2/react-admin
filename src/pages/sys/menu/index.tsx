@@ -1,4 +1,4 @@
-import { Menu } from '@/api';
+import { Menu } from '@/service';
 import { DynamicsIconSvg, Table } from '@/components';
 import EditForm from './components/edit-form';
 import {

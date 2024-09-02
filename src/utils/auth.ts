@@ -1,13 +1,13 @@
 const USER_INFO: string = 'userInfo';
 
-const getToken = () => {
+export const getToken = () => {
   const user = getUserInfo();
   if (user) {
     return user.token;
   }
 };
 
-const setUserInfo = (userInfo: object, remember: boolean) => {
+export const setUserInfo = (userInfo: object, remember: boolean) => {
   if (remember) {
     localStorage.setItem(USER_INFO, JSON.stringify(userInfo));
   } else {
@@ -15,7 +15,7 @@ const setUserInfo = (userInfo: object, remember: boolean) => {
   }
 };
 
-const getUserInfo = () => {
+export const getUserInfo = () => {
   let userInfo = localStorage.getItem(USER_INFO);
   if (!userInfo) {
     userInfo = sessionStorage.getItem(USER_INFO);
@@ -26,9 +26,14 @@ const getUserInfo = () => {
   return null;
 };
 
-const clearUserInfo = () => {
+export const getUserMenus = () => {
+  const user = getUserInfo();
+  if (user) {
+    return user.menus;
+  }
+};
+
+export const clearUserInfo = () => {
   localStorage.removeItem(USER_INFO);
   sessionStorage.removeItem(USER_INFO);
 };
-
-export { clearUserInfo, getToken, getUserInfo, setUserInfo };

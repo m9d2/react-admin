@@ -1,7 +1,7 @@
 import { Card, Space } from 'antd';
 import { Button } from '@/components';
 
-const Log = () => {
+const Index = () => {
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
       <Card></Card>
@@ -10,4 +10,4 @@ const Log = () => {
   );
 };
 
-export default Log;
+export default Index;

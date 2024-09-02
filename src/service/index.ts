@@ -1,6 +1,6 @@
-import * as Menu from '@/api/menu';
-import * as Role from '@/api/role';
-import * as User from '@/api/user';
+import * as Menu from '@/service/menu';
+import * as Role from '@/service/role';
+import * as User from '@/service/user';
 
 // const User = {
 //     Page, Save, Api, UserInfo

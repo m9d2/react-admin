@@ -1,4 +1,4 @@
-import { Menu } from '@/api';
+import { Menu } from '@/service';
 import { http, HttpResponse } from 'msw';
 
 export const menus = [

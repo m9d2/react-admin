@@ -1,4 +1,4 @@
-import { Role } from '@/api';
+import { Role } from '@/service';
 import { fakerZH_CN as faker } from '@faker-js/faker';
 import { delay, http, HttpResponse } from 'msw';
 

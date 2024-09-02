@@ -1,4 +1,4 @@
-import { User } from '@/api';
+import { User } from '@/service';
 import { Table } from '@/components';
 import EditForm, { Action } from './components/edit-form';
 import { common } from '@/utils';

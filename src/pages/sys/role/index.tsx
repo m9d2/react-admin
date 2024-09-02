@@ -1,4 +1,4 @@
-import { Role, User } from '@/api';
+import { Role, User } from '@/service';
 import { Table } from '@/components';
 import EditForm from './components/edit-form';
 import {

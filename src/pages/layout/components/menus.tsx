@@ -1,8 +1,8 @@
-import { Menu as MenuApi } from '@/api';
 import { DynamicsIconSvg } from '@/components';
 import { Menu, MenuProps } from 'antd';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { auth } from '@/utils';
 
 type MenuItem = {
   key: string;
@@ -40,12 +40,8 @@ export default function Menus(props: { collapsed: boolean }) {
   }
 
   useEffect(() => {
-    (async () => {
-      const res = await MenuApi.MyMenus();
-      if (Array.isArray(res.data)) {
-        setMenus(createMenus(res.data));
-      }
-    })();
+    const menus = auth.getUserMenus();
+    setMenus(createMenus(menus));
   }, []);
 
   useEffect(() => {

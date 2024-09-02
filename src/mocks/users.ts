@@ -1,4 +1,4 @@
-import { User } from '@/api';
+import { User } from '@/service';
 import { fakerZH_CN as faker } from '@faker-js/faker';
 import { delay, http, HttpResponse } from 'msw';
 

@@ -1,4 +1,4 @@
-import { Role, User } from '@/api';
+import { Role, User } from '@/service';
 import { Form, FormItem, Modal } from '@/components';
 import { constant } from '@/utils';
 import { App, Input, Radio, Select } from 'antd';
