@@ -22,6 +22,7 @@ import {
   Tag,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { Response, QueryParam } from '@/service/type.ts';
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -196,7 +197,7 @@ const Index: React.FC = () => {
     setRow(record);
   };
 
-  const Title = () => {
+  const Header = () => {
     return (
       <div className="flex-space">
         <Space>
@@ -239,7 +240,7 @@ const Index: React.FC = () => {
 
       <Card>
         <Table
-          title={<Title />}
+          header={<Header />}
           data={data}
           columns={columns}
           loading={loading}

@@ -25,6 +25,7 @@ import {
   Space,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { Response, PageData, QueryParam } from '@/service/type.ts';
 
 const Index: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
@@ -240,7 +241,7 @@ const Index: React.FC = () => {
     }
   };
 
-  const Title = () => {
+  const Header = () => {
     const items: MenuProps['items'] = [
       { key: 1, label: '删除', icon: <DeleteOutlined /> },
       { key: 2, label: '取消', icon: <MinusCircleOutlined /> },
@@ -301,7 +302,7 @@ const Index: React.FC = () => {
       <Card>
         <Table
           data={data && data.content}
-          title={<Title />}
+          header={<Header />}
           columns={columns}
           loading={loading}
           total={data && data.totalElements}

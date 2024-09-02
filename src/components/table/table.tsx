@@ -12,7 +12,7 @@ import {
 import React from 'react';
 
 interface Props {
-  title?: React.ReactElement | undefined;
+  header?: React.ReactElement | undefined;
   data: any[] | undefined;
   columns: TableProps['columns'];
   loading: boolean;
@@ -27,7 +27,7 @@ interface Props {
 }
 
 export default function Table({
-  title,
+  header,
   data,
   columns,
   loading,
@@ -55,7 +55,7 @@ export default function Table({
   };
   return (
     <>
-      <div style={{ paddingBottom: 15 }}>{title}</div>
+      <div style={{ paddingBottom: 15 }}>{header}</div>
       <AntTable
         rowSelection={rowSelection}
         columns={columns}

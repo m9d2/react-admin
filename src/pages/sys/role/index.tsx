@@ -21,6 +21,7 @@ import {
   Space,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { Response, PageData, QueryParam } from '@/service/type.ts';
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -160,7 +161,7 @@ const Index: React.FC = () => {
     setQueryParam({ ...queryParam });
   };
 
-  const Title = () => {
+  const Header = () => {
     return (
       <div className="flex-space">
         <Space className="table-title">
@@ -203,7 +204,7 @@ const Index: React.FC = () => {
       <Card>
         <Table
           data={data && data.content}
-          title={<Title />}
+          header={<Header />}
           columns={columns}
           loading={loading}
           total={data && data.totalElements}

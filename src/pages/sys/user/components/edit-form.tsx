@@ -3,6 +3,7 @@ import { Form, FormItem, Modal } from '@/components';
 import { constant } from '@/utils';
 import { App, Input, Radio, Select } from 'antd';
 import { useEffect, useState } from 'react';
+import { Response } from '@/service/type.ts';
 
 const { TextArea } = Input;
 

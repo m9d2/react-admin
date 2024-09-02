@@ -4,12 +4,12 @@ import { toggle } from '@/store/modules/collapsed.ts';
 import { auth } from '@/utils';
 import {
   BellOutlined,
+  CompressOutlined,
   DownOutlined,
+  ExpandOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   MessageOutlined,
-  ExpandOutlined,
-  CompressOutlined,
 } from '@ant-design/icons';
 import {
   App,
