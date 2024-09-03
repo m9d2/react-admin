@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function ModifyForm(props: Props) {
-  const { open, onOk, onCancel, action = 'add', row } = props;
+  const { open, onOk, onCancel, action, row } = props;
   const { message } = App.useApp();
   const [roles, setRoles] = useState<any[]>([]);
 
@@ -258,7 +258,6 @@ export default function ModifyForm(props: Props) {
       ],
     },
   ];
-
   if (action === 'add') {
     return (
       <Modal open={open} title={'新增用户'} onCancel={onCancel}>

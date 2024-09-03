@@ -4,15 +4,16 @@ import { constant } from '@/utils';
 import { App, Input, Select, Tree } from 'antd';
 import { useEffect } from 'react';
 
+export type Action = 'add' | 'modify';
 export default function ModifyForm(props: {
   open: boolean | undefined;
   onOk: () => void;
   onCancel: () => void;
-  action?: string | 'add' | 'modify';
+  action?: Action;
   row?: any;
   menus?: any[];
 }) {
-  const { open, onOk, onCancel, action = 'add', row, menus } = props;
+  const { open, onOk, onCancel, action, row, menus } = props;
   const { message } = App.useApp();
 
   const save = async (values: any) => {

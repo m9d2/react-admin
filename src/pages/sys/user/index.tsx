@@ -37,9 +37,8 @@ const Index: React.FC = () => {
   });
   const [open, setOpen] = useState<boolean>(false);
   const [row, setRow] = useState<any>();
-  const [action, setAction] = useState<Action>('add');
+  const [action, setAction] = useState<Action>();
   const { message, modal } = App.useApp();
-  const [editFormVisible, setEditFormVisible] = useState(false);
 
   const getMoreItems = (record: any) => {
     const moreItems: MenuProps['items'] = [
@@ -119,7 +118,7 @@ const Index: React.FC = () => {
       render: (_, record) => {
         return (
           <>
-            <a onClick={() => modify(record)}>
+            <a onClick={() => handleAction('modify', record)}>
               编辑
               <EditOutlined />
             </a>
@@ -152,7 +151,6 @@ const Index: React.FC = () => {
       if (response.data) {
         setData(response.data);
       }
-      setEditFormVisible(true);
       setLoading(false);
     })();
   }, [queryParam]);
@@ -161,7 +159,7 @@ const Index: React.FC = () => {
     (async () => {
       switch (key) {
         case '1':
-          resetPassword(record);
+          handleAction('resetPassword', record);
           break;
         case '2':
           await User.Modify({
@@ -183,7 +181,6 @@ const Index: React.FC = () => {
   };
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    console.log('selectedRowKeys changed: ', newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
@@ -200,27 +197,15 @@ const Index: React.FC = () => {
     });
   };
 
-  const add = () => {
-    setAction('add');
-    setOpen(true);
-  };
-
-  const modify = (record: any) => {
-    setRow(record);
-    setAction('modify');
-    setOpen(true);
-  };
-
   const handleOnOk = () => {
-    console.log('handleOnOk');
     setOpen(false);
     setQueryParam({ ...queryParam });
   };
 
-  const resetPassword = (record: any) => {
-    setAction('resetPassword');
+  const handleAction = (actionType: Action, record?: any) => {
+    setAction(actionType);
+    setRow(record || null);
     setOpen(true);
-    setRow(record);
   };
 
   const handleBatchOption = ({ key }: { key: string }) => {
@@ -249,7 +234,11 @@ const Index: React.FC = () => {
     return (
       <div className="flex-space">
         <Space>
-          <Button type="primary" icon={<PlusOutlined />} onClick={add}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => handleAction('add')}
+          >
             添加
           </Button>
           {selectedRowKeys.length > 0 && (
@@ -318,15 +307,13 @@ const Index: React.FC = () => {
           rowSelection={rowSelection}
         />
       </Card>
-      {editFormVisible && (
-        <EditForm
-          row={row}
-          action={action}
-          open={open}
-          onCancel={() => setOpen(false)}
-          onOk={handleOnOk}
-        />
-      )}
+      <EditForm
+        row={row}
+        action={action}
+        open={open}
+        onCancel={() => setOpen(false)}
+        onOk={handleOnOk}
+      />
     </Space>
   );
 };

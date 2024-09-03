@@ -1,6 +1,6 @@
 import { Role, User } from '@/service';
 import { Table } from '@/components';
-import EditForm from './components/edit-form';
+import EditForm, { Action } from './components/edit-form';
 import {
   DownOutlined,
   EditOutlined,
@@ -32,7 +32,7 @@ const Index: React.FC = () => {
   });
   const [open, setOpen] = useState<boolean>(false);
   const [row, setRow] = useState<any>();
-  const [action, setAction] = useState('add');
+  const [action, setAction] = useState<Action>();
   const { message } = App.useApp();
 
   const getMoreItems = (record: any) => {
@@ -79,7 +79,7 @@ const Index: React.FC = () => {
       render: (_, record) => {
         return (
           <>
-            <a onClick={() => modify(record)}>
+            <a onClick={() => handleAction('modify', record)}>
               编辑
               <EditOutlined />
             </a>
@@ -145,14 +145,9 @@ const Index: React.FC = () => {
     });
   };
 
-  const add = () => {
-    setAction('add');
-    setOpen(true);
-  };
-
-  const modify = (record: any) => {
-    setRow(record);
-    setAction('modify');
+  const handleAction = (actionType: Action, record?: any) => {
+    setAction(actionType);
+    setRow(record || null);
     setOpen(true);
   };
 
@@ -165,7 +160,11 @@ const Index: React.FC = () => {
     return (
       <div className="flex-space">
         <Space className="table-title">
-          <Button type="primary" icon={<PlusOutlined />} onClick={add}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => handleAction('add')}
+          >
             添加
           </Button>
         </Space>

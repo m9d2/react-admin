@@ -7,11 +7,12 @@ import { Response } from '@/service/type.ts';
 
 const { TextArea } = Input;
 
+export type Action = 'add' | 'modify';
 export default function ModifyForm(props: {
   open: boolean | undefined;
   onOk: () => void;
   onCancel: () => void;
-  action?: string | 'add' | 'modify';
+  action?: Action;
   row?: any;
 }) {
   const { open, onOk, onCancel, action = 'add', row } = props;
@@ -67,10 +68,12 @@ export default function ModifyForm(props: {
     if (open) {
       (async () => {
         await fetchMenus();
-        const ids = row.menuIds.filter(
-          (menuId: any) => !menus.find((menu) => menu.key === menuId),
-        );
-        setCheckedKeys(ids);
+        if (row) {
+          const ids = row.menuIds.filter(
+            (menuId: any) => !menus.find((menu) => menu.key === menuId),
+          );
+          setCheckedKeys(ids);
+        }
       })();
     }
 

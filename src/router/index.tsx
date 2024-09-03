@@ -1,10 +1,8 @@
 import React, { Suspense } from 'react';
 import { Route } from 'react-router-dom';
 import Loading from '@/components/loading/loading.tsx';
+import DashboardSkeleton from '@/pages/dashboard/components/skeleton.tsx';
 
-const DashboardSkeleton = React.lazy(
-  () => import('@/pages/dashboard/components/skeleton.tsx'),
-);
 const Layout = React.lazy(() => import('@/pages/layout'));
 const Dashboard = React.lazy(() => import('@/pages/dashboard'));
 const User = React.lazy(() => import('@/pages/sys/user'));

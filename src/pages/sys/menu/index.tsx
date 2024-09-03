@@ -1,6 +1,6 @@
 import { Menu } from '@/service';
 import { DynamicsIconSvg, Table } from '@/components';
-import EditForm from './components/edit-form';
+import EditForm, { Action } from './components/edit-form';
 import {
   DownOutlined,
   EditOutlined,
@@ -33,9 +33,8 @@ const Index: React.FC = () => {
   });
   const [open, setOpen] = useState<boolean>(false);
   const [row, setRow] = useState<any>();
-  const [action, setAction] = useState<string>('add');
+  const [action, setAction] = useState<Action>();
   const { message } = App.useApp();
-  const [editFormVisible, setEditFormVisible] = useState(false);
 
   const getMoreItems = () => {
     const moreItems: MenuProps['items'] = [
@@ -98,7 +97,7 @@ const Index: React.FC = () => {
       render: (_, record) => {
         return (
           <>
-            <a onClick={() => modify(record)}>
+            <a onClick={() => handleAction('modify', record)}>
               编辑
               <EditOutlined />
             </a>
@@ -138,7 +137,6 @@ const Index: React.FC = () => {
         setData(response.data);
       }
 
-      setEditFormVisible(true);
       setLoading(false);
     })();
   }, [queryParam]);
@@ -147,7 +145,7 @@ const Index: React.FC = () => {
     (async () => {
       switch (key) {
         case '1':
-          resetPassword(record);
+          handleAction(record);
           break;
         case '2':
           // await User.Modify({
@@ -175,14 +173,9 @@ const Index: React.FC = () => {
     });
   };
 
-  const add = () => {
-    setAction('add');
-    setOpen(true);
-  };
-
-  const modify = (record: any) => {
-    setRow(record);
-    setAction('modify');
+  const handleAction = (actionType: Action, record?: any) => {
+    setAction(actionType);
+    setRow(record || null);
     setOpen(true);
   };
 
@@ -191,17 +184,15 @@ const Index: React.FC = () => {
     setQueryParam({ ...queryParam });
   };
 
-  const resetPassword = (record: any) => {
-    setAction('resetPassword');
-    setOpen(true);
-    setRow(record);
-  };
-
   const Header = () => {
     return (
       <div className="flex-space">
         <Space>
-          <Button type="primary" icon={<PlusOutlined />} onClick={add}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => handleAction('add')}
+          >
             添加
           </Button>
         </Space>
@@ -248,16 +239,14 @@ const Index: React.FC = () => {
           rowKey={(record) => record.id}
         />
       </Card>
-      {editFormVisible && (
-        <EditForm
-          row={row}
-          action={action}
-          open={open}
-          onCancel={() => setOpen(false)}
-          onOk={handleOnOk}
-          menus={data}
-        />
-      )}
+      <EditForm
+        row={row}
+        action={action}
+        open={open}
+        onCancel={() => setOpen(false)}
+        onOk={handleOnOk}
+        menus={data}
+      />
     </Space>
   );
 };
