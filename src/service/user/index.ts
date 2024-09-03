@@ -1,4 +1,5 @@
 import { request } from '@/utils';
+import { Response, PageData, QueryParam } from '@/service/type.ts';
 
 export const Api = {
   PAGE: '/user/page',

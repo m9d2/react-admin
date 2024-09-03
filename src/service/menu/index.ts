@@ -1,4 +1,5 @@
 import { request } from '@/utils';
+import { Response } from '@/service/type.ts';
 
 export const Api = {
   LIST: '/menu/tree',

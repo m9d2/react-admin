@@ -1,15 +1,20 @@
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Route } from 'react-router-dom';
 import Loading from '@/components/loading/loading.tsx';
-import DashboardSkeleton from '@/pages/dashboard/components/skeleton.tsx';
-import Layout from '@/pages/layout';
-import Dashboard from '@/pages/dashboard';
-import User from '@/pages/sys/user';
-import Role from '@/pages/sys/role';
-import Menu from '@/pages/sys/menu';
-import Log from '@/pages/sys/log';
-import NotFound from '@/pages/layout/components/not-found.tsx';
-import Login from '@/pages/login';
+
+const DashboardSkeleton = React.lazy(
+  () => import('@/pages/dashboard/components/skeleton.tsx'),
+);
+const Layout = React.lazy(() => import('@/pages/layout'));
+const Dashboard = React.lazy(() => import('@/pages/dashboard'));
+const User = React.lazy(() => import('@/pages/sys/user'));
+const Role = React.lazy(() => import('@/pages/sys/role'));
+const Menu = React.lazy(() => import('@/pages/sys/menu'));
+const Log = React.lazy(() => import('@/pages/sys/log'));
+const NotFound = React.lazy(
+  () => import('@/pages/layout/components/not-found.tsx'),
+);
+const Login = React.lazy(() => import('@/pages/login'));
 
 const Root = (
   <Route>
