@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import styles from '@/pages/layout/index.module.scss';
+import styles from '@/layout/index.module.scss';
 import { toggle } from '@/store/modules/collapsed.ts';
 import { auth } from '@/utils';
 import {

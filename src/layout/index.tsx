@@ -1,7 +1,7 @@
 import { DynamicsIconSvg } from '@/components';
-import AuthRouter from '@/pages/layout/components/auth-router.tsx';
-import Header from '@/pages/layout/components/header.tsx';
-import Menus from '@/pages/layout/components/menus.tsx';
+import AuthRouter from '@/layout/components/auth-router.tsx';
+import Header from '@/layout/components/header.tsx';
+import Menus from '@/layout/components/menus.tsx';
 import { Layout } from 'antd';
 import { CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ const Navigation = () => {
   );
 };
 
-const Index = () => {
+const MainLayout = () => {
   const year = new Date().getFullYear();
   return (
     <AuthRouter>
@@ -71,4 +71,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default MainLayout;
