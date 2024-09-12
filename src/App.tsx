@@ -56,6 +56,8 @@ function App() {
       },
       Layout: {
         siderBg: menuBgColor,
+        headerPadding: 20,
+        headerHeight: 56,
       },
     },
   };

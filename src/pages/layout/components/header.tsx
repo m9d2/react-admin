@@ -150,6 +150,10 @@ export default function Header() {
             paddingInline: 8,
             paddingBlock: 0,
           },
+          Layout: {
+            headerPadding: 20,
+            headerHeight: 10,
+          },
         },
       }}
     >
