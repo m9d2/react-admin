@@ -39,7 +39,7 @@ export default function Page() {
 
   const initialValues = {
     username: 'admin',
-    password: 'admin',
+    password: '123',
     remember: true,
   };
 

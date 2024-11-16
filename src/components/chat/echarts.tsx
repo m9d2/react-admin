@@ -3,16 +3,18 @@ import {
   BarSeriesOption,
   ComposeOption,
   DatasetComponentOption,
+  GaugeSeriesOption,
   GridComponentOption,
   LineSeriesOption,
   PieSeriesOption,
   TitleComponentOption,
   TooltipComponentOption,
 } from 'echarts';
-import { BarChart, LineChart, PieChart } from 'echarts/charts';
+import { BarChart, GaugeChart, LineChart, PieChart } from 'echarts/charts';
 import {
   DatasetComponent,
   GridComponent,
+  LegendComponent,
   TitleComponent,
   TooltipComponent,
   TransformComponent,
@@ -20,7 +22,13 @@ import {
 import * as echarts from 'echarts/core';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
-import { CSSProperties, useEffect, useRef } from 'react';
+import {
+  CSSProperties,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
 export type ComponentOption = ComposeOption<
   | BarSeriesOption
@@ -30,15 +38,17 @@ export type ComponentOption = ComposeOption<
   | TooltipComponentOption
   | GridComponentOption
   | DatasetComponentOption
+  | GaugeSeriesOption
 >;
 
-const charts = [BarChart, LineChart, PieChart];
+const charts = [BarChart, LineChart, PieChart, GaugeChart];
 const component = [
   TitleComponent,
   TooltipComponent,
   GridComponent,
   DatasetComponent,
   TransformComponent,
+  LegendComponent,
 ];
 
 echarts.use([
@@ -49,44 +59,60 @@ echarts.use([
   CanvasRenderer,
 ]);
 
-const Chart = ({
-  option,
-  style,
-  className,
-}: {
-  option: ComponentOption;
-  style?: CSSProperties;
-  className?: string;
-}) => {
-  const chartRef = useRef(null);
+const Chart = forwardRef(
+  (
+    {
+      option,
+      style,
+      className,
+    }: {
+      option: ComponentOption;
+      style?: CSSProperties;
+      className?: string;
+    },
+    ref,
+  ) => {
+    const chartRef = useRef(null);
 
-  useEffect(() => {
-    const chart = echarts.init(chartRef.current);
-    chart.setOption(option);
+    useImperativeHandle(ref, () => ({
+      setOption: (newOption: ComponentOption, opts: any) => {
+        if (chartRef.current) {
+          const chart = echarts.getInstanceByDom(chartRef.current);
+          if (chart) {
+            chart.setOption(newOption, opts);
+          }
+        }
+      },
+    }));
 
-    const resizeChart = () => {
-      chart.resize();
-    };
+    useEffect(() => {
+      const chart = echarts.init(chartRef.current);
+      chart.setOption(option);
 
-    const resizeObserver = new ResizeObserver(resizeChart);
+      const resizeChart = () => {
+        chart.resize();
+      };
 
-    if (chartRef.current) {
-      resizeObserver.observe(chartRef.current);
-    }
+      const resizeObserver = new ResizeObserver(resizeChart);
 
-    return () => {
-      chart.dispose();
-      resizeObserver.disconnect();
-    };
-  }, [option]);
+      if (chartRef.current) {
+        resizeObserver.observe(chartRef.current);
+      }
 
-  return (
-    <div
-      ref={chartRef}
-      style={{ width: '100%', height: '100%', ...style }}
-      className={classNames('charts-box', className)}
-    ></div>
-  );
-};
+      return () => {
+        chart.dispose();
+        resizeObserver.disconnect();
+      };
+    }, [option]);
+
+    return (
+      <div
+        ref={chartRef}
+        style={{ width: '100%', height: '100%', ...style }}
+        className={classNames('charts-box', className)}
+      ></div>
+    );
+  },
+);
 
 export default Chart;
