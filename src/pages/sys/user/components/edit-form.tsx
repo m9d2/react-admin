@@ -4,21 +4,17 @@ import { constant } from '@/utils';
 import { App, Input, Radio, Select } from 'antd';
 import { useEffect, useState } from 'react';
 import { Response } from '@/service/type.ts';
+import { FormProps } from '@/pages/type.ts';
 
 const { TextArea } = Input;
 
-export type Action = 'add' | 'modify' | 'resetPassword';
-
-interface Props {
-  open: boolean | undefined;
-  onOk: () => void;
-  onCancel: () => void;
-  action?: Action;
-  row?: any;
-}
-
-export default function ModifyForm(props: Props) {
-  const { open, onOk, onCancel, action, row } = props;
+export default function ModifyForm({
+  open,
+  onOk,
+  onCancel,
+  action,
+  row,
+}: FormProps<any>) {
   const { message } = App.useApp();
   const [roles, setRoles] = useState<any[]>([]);
 

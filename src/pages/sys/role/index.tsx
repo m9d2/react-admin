@@ -21,12 +21,14 @@ import {
   Space,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { Response, PageData, QueryParam } from '@/service/type.ts';
+import { PageData, QueryParam, Response } from '@/service/type.ts';
+
+type RoleQueryParam = QueryParam<{ name?: string }>;
 
 const Index: React.FC = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState<PageData>();
-  const [queryParam, setQueryParam] = useState<QueryParam>({
+  const [queryParam, setQueryParam] = useState<RoleQueryParam>({
     page: 0,
     size: 10,
   });
@@ -140,7 +142,7 @@ const Index: React.FC = () => {
   const onFinish: FormProps['onFinish'] = (values) => {
     setQueryParam({
       ...queryParam,
-      condition: values.condition,
+      name: values.name,
       page: data?.number,
     });
   };
@@ -180,9 +182,10 @@ const Index: React.FC = () => {
           autoComplete="off"
           onFinish={onFinish}
           layout="inline"
+          onReset={onFinish}
         >
-          <Form.Item label="角色名称" name="condition" className="form-item">
-            <Input placeholder="请输入用户名或姓名" allowClear />
+          <Form.Item label="角色名称" name="name" className="form-item">
+            <Input placeholder="请输入" allowClear />
           </Form.Item>
           <Form.Item className="form-item">
             <Space size={8}>
@@ -218,15 +221,13 @@ const Index: React.FC = () => {
           rowKey={(record) => record.id}
         />
       </Card>
-      {open && (
-        <EditForm
-          row={row}
-          action={action}
-          open={open}
-          onCancel={() => setOpen(false)}
-          onOk={handleOnOk}
-        />
-      )}
+      <EditForm
+        row={row}
+        action={action}
+        open={open}
+        onCancel={() => setOpen(false)}
+        onOk={handleOnOk}
+      />
     </Space>
   );
 };

@@ -48,24 +48,25 @@ export default function ModifyForm(props: {
   };
 
   useEffect(() => {
-    let menus: any[] = [];
-    const fetchMenus = async () => {
-      const resp: Response<any[]> = await Menu.MyMenus();
-      if (resp.data) {
-        menus = resp.data.map((menu) => {
-          return {
-            title: menu.name,
-            key: menu.id,
-            children: menu.child.map((child: any) => {
-              return { title: child.name, key: child.id };
-            }),
-          };
-        });
-        setMenus(menus);
-      }
-    };
-
+    console.log('edit useEffect');
     if (open) {
+      let menus: any[] = [];
+      const fetchMenus = async () => {
+        const resp: Response<any[]> = await Menu.MyMenus();
+        if (resp.data) {
+          menus = resp.data.map((menu) => {
+            return {
+              title: menu.name,
+              key: menu.id,
+              children: menu.child.map((child: any) => {
+                return { title: child.name, key: child.id };
+              }),
+            };
+          });
+          setMenus(menus);
+        }
+      };
+
       (async () => {
         await fetchMenus();
         if (row) {
@@ -75,12 +76,12 @@ export default function ModifyForm(props: {
           setCheckedKeys(ids);
         }
       })();
-    }
 
-    return () => {
-      setParents([]);
-    };
-  }, [open, row]);
+      return () => {
+        setParents([]);
+      };
+    }
+  }, [open]);
 
   const onCheck: TreeProps['onCheck'] = (keys, info) => {
     if (Array.isArray(keys)) {

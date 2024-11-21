@@ -1,6 +1,6 @@
 import { User } from '@/service';
 import { Table } from '@/components';
-import EditForm, { Action } from './components/edit-form';
+import EditForm from './components/edit-form';
 import { common } from '@/utils';
 import {
   DeleteOutlined,
@@ -26,18 +26,20 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Response, PageData, QueryParam } from '@/service/type.ts';
+import { ActionType } from '@/pages/type.ts';
 
+type UserQueryParam = QueryParam;
 const Index: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<PageData>();
-  const [queryParam, setQueryParam] = useState<QueryParam>({
+  const [queryParam, setQueryParam] = useState<UserQueryParam>({
     page: 0,
     size: 10,
   });
   const [open, setOpen] = useState<boolean>(false);
   const [row, setRow] = useState<any>();
-  const [action, setAction] = useState<Action>();
+  const [action, setAction] = useState<ActionType>();
   const { message, modal } = App.useApp();
 
   const getMoreItems = (record: any) => {
@@ -202,7 +204,7 @@ const Index: React.FC = () => {
     setQueryParam({ ...queryParam });
   };
 
-  const handleAction = (actionType: Action, record?: any) => {
+  const handleAction = (actionType: ActionType, record?: any) => {
     setAction(actionType);
     setRow(record || null);
     setOpen(true);
