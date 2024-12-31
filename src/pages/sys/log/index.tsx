@@ -1,6 +1,7 @@
 import { Space } from 'antd';
 import { Button } from '@/components';
 import Card from '@/components/card';
+import { EditOutlined } from '@ant-design/icons';
 
 const Index = () => {
   const title = <span>标题</span>;
@@ -12,7 +13,13 @@ const Index = () => {
         <div>222</div>
         <div>222</div>
       </Card>
-      <Button title="hello"></Button>
+      <Button
+        icon={<EditOutlined />}
+        type="secondary"
+        onClick={() => alert('Primary Button')}
+      >
+        Primary Button
+      </Button>
     </Space>
   );
 };

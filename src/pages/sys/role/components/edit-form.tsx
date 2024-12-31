@@ -43,10 +43,6 @@ export default function ModifyForm(props: {
     return false;
   };
 
-  const handleCancel = () => {
-    onCancel();
-  };
-
   useEffect(() => {
     console.log('edit useEffect');
     if (open) {
@@ -197,7 +193,7 @@ export default function ModifyForm(props: {
         <Form
           style={{ height: '420px', overflow: 'auto' }}
           onFinish={save}
-          onCancel={handleCancel}
+          onCancel={onCancel}
           items={addFormItems}
         ></Form>
       </Modal>
@@ -209,7 +205,7 @@ export default function ModifyForm(props: {
         <Form
           style={{ height: '420px', overflow: 'auto' }}
           onFinish={modify}
-          onCancel={handleCancel}
+          onCancel={onCancel}
           items={modifyFormItems}
           initialValues={row}
         ></Form>

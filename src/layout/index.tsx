@@ -25,7 +25,7 @@ const Navigation = () => {
   const value = useSelector((state: any) => state.collapsed.value);
   return (
     <Layout.Sider
-      width={256}
+      width={228}
       trigger={null}
       collapsible
       collapsed={value}

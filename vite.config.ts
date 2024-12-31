@@ -10,4 +10,9 @@ export default defineConfig({
       '@': '/src',
     },
   },
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+    },
+  },
 });

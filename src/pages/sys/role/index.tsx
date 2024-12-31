@@ -20,7 +20,7 @@ import {
   Input,
   Space,
 } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { PageData, QueryParam, Response } from '@/service/type.ts';
 
 type RoleQueryParam = QueryParam<{ name?: string }>;
@@ -153,10 +153,14 @@ const Index: React.FC = () => {
     setOpen(true);
   };
 
-  const handleOnOk = () => {
+  const handleOnOk = useCallback(() => {
     setOpen(false);
     setQueryParam({ ...queryParam });
-  };
+  }, []);
+
+  const handleOnCancel = useCallback(() => {
+    setOpen(false);
+  }, []);
 
   const Header = () => {
     return (
@@ -225,7 +229,7 @@ const Index: React.FC = () => {
         row={row}
         action={action}
         open={open}
-        onCancel={() => setOpen(false)}
+        onCancel={handleOnCancel}
         onOk={handleOnOk}
       />
     </Space>
