@@ -9,12 +9,12 @@ export const login = [
         code: 200,
         msg: '操作成功',
         data: {
-          id: 41,
+          id: 2,
           username: 'admin',
-          name: 'admin',
+          name: '管理员',
           phone: null,
           token:
-            'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcyNjExMjUwOSwiZXhwIjoxNzI2MTE2MTA5fQ.sSZWnZEFZr7iSI3PC6DbHu5y6eT-1sTSyXC7GiHoU9s',
+            'eyJraWQiOiIyIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJhZG1pbiJ9.4_-_4ZY7Gyw_1q3gcXRCX-yKM9kyNgvBkMIpZ9wwZsA',
           roleType: 'ADMIN',
           roleName: '管理员',
           firstLogin: false,
@@ -46,6 +46,25 @@ export const login = [
               type: 'DIRECTORY',
               icon: 'home',
               sort: 1000,
+            },
+            {
+              child: [
+                {
+                  child: null,
+                  id: 2001,
+                  name: '服务器',
+                  url: '/business/serve',
+                  type: 'MENU',
+                  icon: 'setting',
+                  sort: 2001,
+                },
+              ],
+              id: 2000,
+              name: '工具',
+              url: '/business',
+              type: 'DIRECTORY',
+              icon: 'setting',
+              sort: 2000,
             },
             {
               child: [
@@ -85,6 +104,15 @@ export const login = [
                   icon: null,
                   sort: 9004,
                 },
+                {
+                  child: null,
+                  id: 9005,
+                  name: '系统监控',
+                  url: '/sys/monitor',
+                  type: 'MENU',
+                  icon: null,
+                  sort: 9004,
+                },
               ],
               id: 9000,
               name: '系统管理',
@@ -95,8 +123,9 @@ export const login = [
             },
           ],
         },
-        timestamp: 1726112509751,
+        timestamp: 1736305652080,
         success: true,
+        requestId: '1bccefd417d3425abf4644237ec96c20',
       });
     }
     return HttpResponse.json({
