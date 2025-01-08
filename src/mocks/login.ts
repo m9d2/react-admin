@@ -4,7 +4,7 @@ export const login = [
   http.post('/api/login', async ({ request }) => {
     await delay(200);
     const data: any = await request.json();
-    if (data.username === 'admin' && data.password === 'admin') {
+    if (data.username === 'admin' && data.password === '123') {
       return HttpResponse.json({
         code: 200,
         msg: '操作成功',
