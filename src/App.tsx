@@ -12,8 +12,10 @@ import Root from '@/router';
 const router = createHashRouter(createRoutesFromElements(Root));
 
 function App() {
-  const primaryColor = 'rgba(0, 96, 183, 1)';
-  const menuBgColor = '#1A1A1A';
+  const root = document.documentElement;
+  const style = getComputedStyle(root);
+  const primaryColor = style.getPropertyValue('--color-primary');
+  const menuBgColor = style.getPropertyValue('--color-bg-menu');
   const themeConfig: ThemeConfig = {
     cssVar: true,
     algorithm: [theme.defaultAlgorithm],

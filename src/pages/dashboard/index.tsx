@@ -14,208 +14,136 @@ import {
   Segmented,
   Space,
   Statistic,
+  theme,
 } from 'antd';
 import * as echarts from 'echarts/core';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
-
-const option: ComponentOption = {
-  resize: true,
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow',
-    },
-  },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true,
-  },
-  xAxis: {
-    type: 'category',
-    data: [
-      '1月',
-      '2月',
-      '3月',
-      '4月',
-      '5月',
-      '6月',
-      '7月',
-      '8月',
-      '9月',
-      '10月',
-      '11月',
-      '12月',
-    ],
-  },
-  yAxis: {
-    type: 'value',
-  },
-  series: [
-    {
-      name: 'Direct',
-      type: 'bar',
-      barWidth: '60%',
-      data: [10, 52, 200, 334, 390, 330, 220, 301, 100, 300, 210, 390],
-    },
-  ],
-  color: ['#1677ff'],
-};
-
-const option2: ComponentOption = {
-  color: ['#c6a6f1'],
-  tooltip: {
-    trigger: 'axis',
-  },
-  grid: {
-    left: '0',
-    right: '0',
-    bottom: '0',
-    top: '0',
-    containLabel: false,
-  },
-  xAxis: [
-    {
-      show: false,
-      type: 'category',
-      boundaryGap: false,
-      data: [
-        '2024-01-03',
-        '2024-01-04',
-        '2024-01-05',
-        '2024-01-06',
-        '2024-01-07',
-        '2024-01-08',
-        '2024-01-09',
-      ],
-    },
-  ],
-  yAxis: [
-    {
-      type: 'value',
-      show: false,
-      axisLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      splitLine: {
-        show: false,
-      },
-    },
-  ],
-  series: [
-    {
-      type: 'line',
-      smooth: true,
-      lineStyle: {
-        width: 0,
-      },
-      showSymbol: false,
-      areaStyle: {
-        opacity: 0.8,
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          {
-            offset: 0,
-            color: 'rgb(128, 255, 165)',
-          },
-          {
-            offset: 1,
-            color: 'rgb(1, 191, 236)',
-          },
-        ]),
-      },
-      emphasis: {
-        focus: 'series',
-      },
-      data: [14120, 4320, 4620, 5120, 9120, 3120, 300],
-    },
-  ],
-};
-
-const option3: ComponentOption = {
-  title: {
-    left: 'center',
-  },
-  tooltip: {
-    trigger: 'item',
-  },
-  series: [
-    {
-      name: 'Access From',
-      type: 'pie',
-      radius: '50%',
-      data: [
-        { value: 1048, name: 'Search Engine' },
-        { value: 735, name: 'Direct' },
-        { value: 580, name: 'Email' },
-        { value: 484, name: 'Union Ads' },
-        { value: 300, name: 'Video Ads' },
-      ],
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)',
-        },
-      },
-    },
-  ],
-};
-
-const option4: ComponentOption = {
-  resize: true,
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow',
-    },
-  },
-  grid: {
-    left: '0',
-    right: '0',
-    bottom: '0',
-    top: '0',
-    containLabel: false,
-  },
-  xAxis: {
-    show: false,
-    type: 'category',
-    data: [
-      '1月',
-      '2月',
-      '3月',
-      '4月',
-      '5月',
-      '6月',
-      '7月',
-      '8月',
-      '9月',
-      '10月',
-      '11月',
-      '12月',
-    ],
-  },
-  yAxis: {
-    show: false,
-    type: 'value',
-  },
-  series: [
-    {
-      name: 'Direct',
-      type: 'bar',
-      barWidth: '60%',
-      data: [10, 52, 200, 334, 390, 330, 220, 301, 100, 300, 210, 390],
-    },
-  ],
-  color: ['#1677ff'],
-};
+const { useToken } = theme;
 
 const DataCardPanel = () => {
+  const { token } = useToken();
+  const colorPrimary = token?.colorPrimary;
   const valueStyle = { fontSize: '30px', fontWeight: 500 };
+  const option2: ComponentOption = {
+    color: ['#c6a6f1'],
+    tooltip: {
+      trigger: 'axis',
+    },
+    grid: {
+      left: '0',
+      right: '0',
+      bottom: '0',
+      top: '0',
+      containLabel: false,
+    },
+    xAxis: [
+      {
+        show: false,
+        type: 'category',
+        boundaryGap: false,
+        data: [
+          '2024-01-03',
+          '2024-01-04',
+          '2024-01-05',
+          '2024-01-06',
+          '2024-01-07',
+          '2024-01-08',
+          '2024-01-09',
+        ],
+      },
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        show: false,
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        splitLine: {
+          show: false,
+        },
+      },
+    ],
+    series: [
+      {
+        type: 'line',
+        smooth: true,
+        lineStyle: {
+          width: 0,
+        },
+        showSymbol: false,
+        areaStyle: {
+          opacity: 0.8,
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgb(128, 255, 165)',
+            },
+            {
+              offset: 1,
+              color: 'rgb(1, 191, 236)',
+            },
+          ]),
+        },
+        emphasis: {
+          focus: 'series',
+        },
+        data: [14120, 4320, 4620, 5120, 9120, 3120, 300],
+      },
+    ],
+  };
+
+  const option4: ComponentOption = {
+    resize: true,
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    grid: {
+      left: '0',
+      right: '0',
+      bottom: '0',
+      top: '0',
+      containLabel: false,
+    },
+    xAxis: {
+      show: false,
+      type: 'category',
+      data: [
+        '1月',
+        '2月',
+        '3月',
+        '4月',
+        '5月',
+        '6月',
+        '7月',
+        '8月',
+        '9月',
+        '10月',
+        '11月',
+        '12月',
+      ],
+    },
+    yAxis: {
+      show: false,
+      type: 'value',
+    },
+    series: [
+      {
+        name: 'Direct',
+        type: 'bar',
+        barWidth: '60%',
+        data: [10, 52, 200, 334, 390, 330, 220, 301, 100, 300, 210, 390],
+      },
+    ],
+    color: [colorPrimary],
+  };
 
   const cards = [
     <Card>
@@ -307,7 +235,82 @@ const DataCardPanel = () => {
 const Dashboard = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [value, setValue] = useState<string | number>('Map');
+  const { token } = useToken();
+  const colorPrimary = token?.colorPrimary;
 
+  const option: ComponentOption = {
+    resize: true,
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true,
+    },
+    xAxis: {
+      type: 'category',
+      data: [
+        '1月',
+        '2月',
+        '3月',
+        '4月',
+        '5月',
+        '6月',
+        '7月',
+        '8月',
+        '9月',
+        '10月',
+        '11月',
+        '12月',
+      ],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        name: 'Direct',
+        type: 'bar',
+        barWidth: '60%',
+        data: [10, 52, 200, 334, 390, 330, 220, 301, 100, 300, 210, 390],
+      },
+    ],
+    color: [colorPrimary],
+  };
+  const option3: ComponentOption = {
+    title: {
+      left: 'center',
+    },
+    tooltip: {
+      trigger: 'item',
+    },
+    series: [
+      {
+        name: 'Access From',
+        type: 'pie',
+        radius: '50%',
+        data: [
+          { value: 1048, name: 'Search Engine' },
+          { value: 735, name: 'Direct' },
+          { value: 580, name: 'Email' },
+          { value: 484, name: 'Union Ads' },
+          { value: 300, name: 'Video Ads' },
+        ],
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
+        },
+      },
+    ],
+  };
   const items: MenuProps['items'] = [
     {
       key: '1',
