@@ -26,7 +26,7 @@ import { PageData, QueryParam, Response } from '@/service/type.ts';
 type RoleQueryParam = QueryParam<{ name?: string }>;
 
 const Index: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState<PageData>();
   const [queryParam, setQueryParam] = useState<RoleQueryParam>({
     page: 0,

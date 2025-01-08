@@ -4,18 +4,18 @@ import { constant } from '@/utils';
 import { App, Input, Select, Tree, TreeProps } from 'antd';
 import { useEffect, useState } from 'react';
 import { Response } from '@/service/type.ts';
+import { FormProps } from '@/pages/type.ts';
 
 const { TextArea } = Input;
 
 export type Action = 'add' | 'modify';
-export default function ModifyForm(props: {
-  open: boolean | undefined;
-  onOk: () => void;
-  onCancel: () => void;
-  action?: Action;
-  row?: any;
-}) {
-  const { open, onOk, onCancel, action = 'add', row } = props;
+export default function ModifyForm({
+  open,
+  onOk,
+  onCancel,
+  action,
+  row,
+}: FormProps<any>) {
   const { message } = App.useApp();
   const [menus, setMenus] = useState<any[]>([]);
   const [checkedKeys, setCheckedKeys] = useState<number[]>([]);
@@ -44,7 +44,6 @@ export default function ModifyForm(props: {
   };
 
   useEffect(() => {
-    console.log('edit useEffect');
     if (open) {
       let menus: any[] = [];
       const fetchMenus = async () => {

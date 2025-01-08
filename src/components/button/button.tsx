@@ -12,24 +12,27 @@ interface ButtonProps {
   style?: React.CSSProperties;
   children?: React.ReactNode;
   icon?: React.ReactNode;
+  htmlType?: 'submit' | 'button' | 'reset';
 }
 
 const Button: React.FC<ButtonProps> = ({
-  type,
-  size,
-  disabled,
-  loading,
+  type = 'primary',
+  size = 'medium',
+  disabled = false,
+  loading = false,
   onClick,
   className,
   style,
   icon,
   children,
+  htmlType = 'button',
 }) => {
   const buttonClass = classNames(
     styles.button,
     styles[`button-${type}`],
     styles[`button-${size}`],
-    { [styles.disabled]: disabled || loading },
+    { [styles.disabled]: disabled },
+    { [styles.loading]: loading },
     className,
   );
 
@@ -38,12 +41,12 @@ const Button: React.FC<ButtonProps> = ({
       className={buttonClass}
       style={style}
       onClick={onClick}
-      disabled={disabled || loading}
+      disabled={disabled}
+      type={htmlType}
     >
       {loading && <span className={styles.spinner}></span>}{' '}
-      {/* 加载中的 spinner */}
-      {icon && <span className={styles.icon}>{icon}</span>} {/* 图标 */}
-      {children && <span className={styles.text}>{children}</span>} {/* 文本 */}
+      {icon && !loading && <span className={styles.icon}>{icon}</span>}
+      {children && <span className={styles.text}>{children}</span>}
     </button>
   );
 };

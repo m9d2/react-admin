@@ -64,12 +64,8 @@ export default function Menus(props: { collapsed: boolean }) {
   }, [menus, props.collapsed]);
 
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
-    const latestOpenKey = keys.find((key) => openKeys?.indexOf(key) === -1);
-    if (latestOpenKey) {
-      setOpenKeys(keys);
-    } else {
-      setOpenKeys([]);
-    }
+    setOpenKeys(keys);
+    localStorage.setItem('openKeys', JSON.stringify(keys));
   };
   const onClick = (router: any) => {
     navigate(router.key);

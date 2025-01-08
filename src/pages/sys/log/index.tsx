@@ -2,8 +2,18 @@ import { Space } from 'antd';
 import { Button } from '@/components';
 import Card from '@/components/card';
 import { EditOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 
 const Index = () => {
+  const [loading, setLoading] = useState(false);
+
+  const onClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+
   const title = <span>标题</span>;
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
@@ -12,14 +22,33 @@ const Index = () => {
         <div>222</div>
         <div>222</div>
         <div>222</div>
+        <Space direction="horizontal" style={{ width: '100%' }}>
+          <Button
+            loading={loading}
+            icon={<EditOutlined />}
+            type="primary"
+            onClick={onClick}
+          >
+            Primary Button
+          </Button>
+          <Button
+            loading={loading}
+            icon={<EditOutlined />}
+            type="secondary"
+            onClick={onClick}
+          >
+            Secondary Button
+          </Button>
+          <Button
+            loading={loading}
+            icon={<EditOutlined />}
+            type="danger"
+            onClick={onClick}
+          >
+            Danger Button
+          </Button>
+        </Space>
       </Card>
-      <Button
-        icon={<EditOutlined />}
-        type="secondary"
-        onClick={() => alert('Primary Button')}
-      >
-        Primary Button
-      </Button>
     </Space>
   );
 };
